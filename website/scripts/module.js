@@ -73,8 +73,9 @@ angular.module('contextDiscount', ['ngMaterial', 'ngTextTruncate'])
 
         $scope.cards = [
             {
+                'type': 'groceries',
                 'logo_url': './img/rewe-logo.jpg',
-                'discount_text_top': '1,42€',
+                'discount_text_top': '1,42',
                 'discount_text_bottom': '-15%',
                 'discount_text': '',
                 'title': 'JA! 1kg Meat',
@@ -92,8 +93,9 @@ angular.module('contextDiscount', ['ngMaterial', 'ngTextTruncate'])
             },
 
             {
+                'type': 'groceries',
                 'logo_url': './img/Kaufland.png',
-                'discount_text_top': '1,98€',
+                'discount_text_top': '1,98',
                 'discount_text_bottom': '-33%',
                 'discount_text': '',
                 'title': '300g Jona Apples',
@@ -110,13 +112,14 @@ angular.module('contextDiscount', ['ngMaterial', 'ngTextTruncate'])
             },
 
             {
+                'type': 'club',
                 'logo_url': './img/couch-kapitaen.jpg',
                 'discount_text_top': '',
                 'discount_text_bottom': '',
-                'discount_text': '2,50€',
+                'discount_text': '2,50',
                 'title': 'Jacky Cola...',
                 'subtitle': '600m away',
-                'description': '... for 2,50€. All night long! #ContextDiscount',
+                'description': '... for 2,50. All night long! #ContextDiscount',
                 'social_discount': [
                     {
                         'type': 'Twitter',
@@ -134,12 +137,13 @@ angular.module('contextDiscount', ['ngMaterial', 'ngTextTruncate'])
             },
 
             {
+                'type': 'club',
                 'logo_url': './img/the-old-firehouse-logo.gif',
                 'discount_text_top': '',
                 'discount_text_bottom': '',
-                'discount_text': '4,50€',
+                'discount_text': '4,50',
                 'title': 'Cocktail Happy Hour',
-                'description': 'Jumbo cocktails for 4,50€',
+                'description': 'Jumbo cocktails for 4,50',
                 'social_discount': [
                     {
                         'type': 'facebook',
@@ -157,6 +161,7 @@ angular.module('contextDiscount', ['ngMaterial', 'ngTextTruncate'])
             },
 
             {
+                'type': 'education',
                 'logo_url': './img/akademie.png',
                 'discount_text_top': '',
                 'discount_text_bottom': '',
@@ -187,6 +192,7 @@ angular.module('contextDiscount', ['ngMaterial', 'ngTextTruncate'])
             },
 
             {
+                'type': 'fitness',
                 'logo_url': './Fitness_First_Logo.png',
                 'discount_text_top': '',
                 'discount_text_bottom': '',
@@ -212,8 +218,9 @@ angular.module('contextDiscount', ['ngMaterial', 'ngTextTruncate'])
             },
 
             {
+                'type': 'fitness',
                 'logo_url': './Dean_and_David.jpg',
-                'discount_text_top': '2,50€',
+                'discount_text_top': '2,50',
                 'discount_text_bottom': '-10%',
                 'discount_text': '',
                 'title': 'Caesar Fitness Salad',
