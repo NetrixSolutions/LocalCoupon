@@ -29,13 +29,11 @@
 .discount-container {
     display: block;
     height: 50%;
-    /*background-color: #00c853;*/
     padding: 0.5rem 1rem;
 }
 
 .price {
     display: block;
-    /*color: white;*/
     font-size: 3rem;
     text-align: center;
     font-weight: ligher;
@@ -43,7 +41,6 @@
 
 .discount {
     display: block;
-    /*color: white;*/
     font-size: 3rem;
     text-align: center;
     font-weight: bolder;
@@ -88,12 +85,16 @@
     height: 3rem;
     width: 3rem;
     margin-left: 1.5rem;
-    /*background-color: rgb(0, 200, 83);*/
     border-radius: 50%;
     text-align: center;
-    /*color: white;*/
     line-height: 3rem;
     font-size: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+.action-item:hover {
+    cursor: pointer;
+    background-color: rgb(0, 200, 83);
+    color: white;
 }
 
 .club {
@@ -109,4 +110,66 @@
 .groceries {
     background-color: #FFC107;
     color: #333;
+}
+
+.social-discount {
+background-color: rgba(85,172,238,0.15);
+    padding: 1rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+.social-discount:hover {
+    cursor: pointer;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.social-icon {
+    height: 1.5rem;
+    margin-right: 1rem;
+    float: left;
+    margin-top: -0.25rem;
+}
+
+.social-text {
+    color: rgb(85,172,238);
+    font-size: 1.2rem;
+    line-height: 1.2rem;
+}
+
+.challenge {
+    display: block;
+    padding: 1rem;
+    background-color: rgba(0, 200, 83, 0.2);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+.challenge:hover {
+    cursor: pointer;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.challenge-bar {
+    display: block;
+    width: 100%;
+    height: 4px;
+    color: black;
+    float: left;
+    margin: -1rem -1rem 0 -1rem;
+}
+
+.challenge-fill {
+    background-color: rgb(0, 200, 83);
+    height: 100%;
+    width: 34%;
+}
+
+.challenge-icon {
+    height: 1.5rem;
+    margin-right: 1rem;
+    float: left;
+    margin-top: -0.25rem;
+}
+
+.challenge-text {
+    color: rgb(0, 200, 83);
+    font-size: 1.2rem;
+    line-height: 1.2rem;
 }
