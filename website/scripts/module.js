@@ -1,78 +1,8 @@
 angular.module('contextDiscount', ['ngMaterial', 'ngTextTruncate', 'ngSanitize'])
-    .factory('dataService', function () {
-        //var streamData = {};
-        var dialog;
-        var companies;
-        return {
-            //getStreamData: function () {
-            //    return streamData;
-            //},
-            //setStreamData: function (newStreamData) {
-            //    streamData = newStreamData;
-            //},
-            //resetStreamData: function () {
-            //    streamData = {};
-            //}
-            getDialog: function () {
-                return dialog;
-            },
-            setDialog: function (newDialog) {
-                dialog = newDialog;
-            }
-        };
-    })
     .controller('MainController', function ($scope, dataService, $mdSidenav, $mdMedia, $mdDialog, $window, $log) {
-        // ==============================
-        // ===== General
-        // ==============================
-        $scope.appName = "Context Discount";
-
-        // ==============================
-        // ===== Side Nav
-        // ==============================
-        $scope.toggleLeft = function () {
-            $mdSidenav('left').toggle()
-                .then(function () {
-                    $log.debug("toggle left is done");
-                });
-        };
-        $scope.focus = function () {
-            console.log("focus");
-            angular.element(document.getElementById('search-icon')).addClass("focus");
-        };
-        $scope.blur = function () {
-            console.log("unfocus");
-            angular.element(document.getElementById('search-icon')).removeClass("focus");
-        }
-
-        $scope.close = function () {
-            $mdSidenav('left').close()
-                .then(function () {
-                    $log.debug("close LEFT is done");
-                });
-        };
-
-        $scope.typeSelected = function (offer) {
-            offers = [];
-            $scope.selectedTypeName = offer.name;
-            $scope.selectedType = offer.shortname;
-            console.log("selected: " + offer.shortname);
-            if ($mdMedia('gt-md')) {
-                // request for desktop
-                communicator.getOffersByType(offer.shortname, undefined, offerCallback);
-                $scope.moreOffersAvailable = false;
-            } else {
-                // request on mobile
-                communicator.getOffersByType(offer.shortname, 10, offerCallback);
-                $scope.moreOffersAvailable = true;
-                $scope.close();
-            }
-
-            //dataService.setStreamData(offers);
-        };
 
         $scope.badgeIcons = {
-           'twitter': 'img/twitter.png'
+            'twitter': 'img/twitter.png'
         };
 
         $scope.cards = [
@@ -248,18 +178,5 @@ angular.module('contextDiscount', ['ngMaterial', 'ngTextTruncate', 'ngSanitize']
             }
         ]
 
-    })
-    //.filter('badgeFilter', function () {
-    //    return function (input) {
-    //        if (input.indexOf("twitter") > -1) {
-    //            return "img/twitter.png";
-    //        }
-    //        return "";
-    //    }
-    //})
-    .config(function ($mdThemingProvider) {
-        $mdThemingProvider.theme('default')
-            .primaryPalette('indigo')
-            .accentPalette('orange');
     });
 
