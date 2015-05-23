@@ -119,22 +119,22 @@
 }
 
 .club {
-    background-color: #607D8B;
+    background-color: #90A4AE;
     color: white;
 }
 
 .fitness {
-    background-color: rgb(163, 196, 5);
-    color: white;
+    background-color: #A5D6A7;
+    color: #333;
 }
 
 .groceries {
-    background-color: #FFC107;
+    background-color: #FFF59D;
     color: #333;
 }
 
 .education {
-    background-color: #03A9F4;
+    background-color: #B3E5FC;
     color: #333;
 }
 
@@ -168,7 +168,7 @@
 
 .xing {
  color: #026466;
-    background-color: rgba(2, 100, 102, 0.15);
+    background-color: rgba(207, 220, 0, 0.15);
 }
 
 .facebook {
@@ -179,7 +179,7 @@
 .lifelog {
     display: block;
     padding: 1rem;
-    background-color: rgba(163, 196, 5, 0.2);
+    background-color: rgba(244, 255, 129, 0.5);
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 .lifelog:hover {
