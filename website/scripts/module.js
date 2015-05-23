@@ -126,7 +126,7 @@ angular.module('contextDiscount', ['ngMaterial', 'ngTextTruncate', 'ngSanitize']
                 'description': '... for 2,50. All night long! #ContextDiscount',
                 'social_discount': [
                     {
-                        'type': 'Twitter',
+                        'type': 'twitter',
                         'discount_text': '1 free for retweeting',
                         'progress': ''
                     }
@@ -175,7 +175,7 @@ angular.module('contextDiscount', ['ngMaterial', 'ngTextTruncate', 'ngSanitize']
                 'description': 'Get 50% off for the next training and become a leader!',
                 'social_discount': [
                     {
-                        'type': 'Xing',
+                        'type': 'xing',
                         'discount_text': 'Get 25% by subscribing',
                         'progress': ''
                     },
