@@ -34,34 +34,10 @@
     <script type="text/javascript" src="scripts/materialize.min.js"></script>
 
     <!-- Add styles -->
-    <link rel="stylesheet" type="text/css" href="styles/gitgraph.css">
     <link rel="stylesheet" type="text/css" href="styles/cards.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="styles/app.css">
 
-    <script>
-        $(window).scroll(function () {
-            var s = $(window).scrollTop(),
-                    d = $(document).height(),
-                    c = $(window).height();
-            scrollPercent = (s / (d - c)) * 100;
-            var position = scrollPercent;
-
-            $("#scroll-progress").css('width', position + '%');
-
-            // scroll indicator on canvas
-           /* var cards = $(".card");
-            cards.each(function (index) {
-                var card = cards[index];
-                var top = $(this).offset().top - 140;
-                var bottom = top + $(this).outerHeight();
-                if (s >= top && s <= bottom) {
-                    pathgraph.highlightNodeByCard(card);
-                }
-            });*/
-
-        });
-    </script>
 </head>
 <body ng-controller="MainController" layout="row">
 
