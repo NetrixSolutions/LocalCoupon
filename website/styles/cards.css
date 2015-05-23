@@ -59,7 +59,6 @@
 .bottom-container {
     float: right;
     padding: 0 2rem;
-    height: 20rem;
 }
 
 .badge {
@@ -99,23 +98,19 @@
 }
 
 .actions {
-    overflow: auto;
-    position: absolute;
-    right: 2rem;
-    bottom: 1rem;
 }
 
 .action-item {
     float: right;
     height: 3rem;
     width: 3rem;
-    margin-left: 1.5rem;
     border-radius: 50%;
     text-align: center;
     line-height: 3rem;
     font-size: 1.5rem;
     background-color: white;
     color: black;
+    margin-bottom: 0.5rem;
 }
 .action-item:hover {
     cursor: pointer;
@@ -146,6 +141,8 @@
 .social-discount {
     padding: 1rem;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    margin-bottom: 1rem;
+    width: 100%;
 }
 .social-discount:hover {
     cursor: pointer;
@@ -179,13 +176,13 @@
     background-color: rgba(59, 85, 152, 0.15);
 }
 
-.challenge {
+.lifelog {
     display: block;
     padding: 1rem;
     background-color: rgba(163, 196, 5, 0.2);
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
-.challenge:hover {
+.lifelog:hover {
     cursor: pointer;
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
