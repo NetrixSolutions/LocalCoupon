@@ -40,6 +40,23 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="styles/app.css">
 
+    <script>window.twttr = (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0],
+                t = window.twttr || {};
+        if (d.getElementById(id)) return t;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://platform.twitter.com/widgets.js";
+        fjs.parentNode.insertBefore(js, fjs);
+
+        t._e = [];
+        t.ready = function(f) {
+            t._e.push(f);
+        };
+
+        return t;
+    }(document, "script", "twitter-wjs"));</script>
+
     <script type="text/javascript">
         $(document).ready(function () {
             $('.button-collapse').sideNav({
@@ -56,7 +73,52 @@
                 // CALL REST
             });
 
+            var parameterValue = decodeURIComponent(window.location.search.match(/(\?|&)code\=([^&]*)/)[2]);
+            if(paramValue){
+                if(localStorage.getItem("access")){
+                   // getSteps();
+                }
+                else {
+                    getAccessToken();
+                }
+
+            }
+
         });
+
+        function getAccessToken(){
+            xmlhttp.open("POST","https://platform.lifelog.sonymobile.com/oauth/2/token",false);
+            xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            var parameterValue = decodeURIComponent(window.location.search.match(/(\?|&)code\=([^&]*)/)[2]);
+            var body = "client_id=H2OGTWxpdAuKCSD8K964zCAzshY9OoFk&client_secret=PxtA6lL8cEf8Kbuw&grant_type=authorization_code&code="+parameterValue;
+            xmlhttp.send(body);
+            var jsonResponse = JSON.parse(xmlhttp.responseText);
+            console.log("JSON: "+jsonResponse);
+
+            localStorage.setItem("access", jsonResponse[access-token]);
+            console.log("ACCESS-TOKEN:"+localStorage.getItem("access"));
+
+        }
+
+        function getSteps(){
+            xmlhttp.open("POST","https://platform.lifelog.sonymobile.com/oauth/2/token",false);
+            xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            var parameterValue = decodeURIComponent(window.location.search.match(/(\?|&)code\=([^&]*)/)[2]);
+            var body = "client_id=H2OGTWxpdAuKCSD8K964zCAzshY9OoFk&client_secret=PxtA6lL8cEf8Kbuw&grant_type=authorization_code&code="+parameterValue;
+            xmlhttp.send(body);
+            var jsonResponse = JSON.parse(xmlhttp.responseText);
+            console.log("JSON: "+jsonResponse);
+
+            localStorage.setItem("access", jsonResponse[access-token]);
+            console.log("ACCESS-TOKEN:"+localStorage.getItem("access"));
+
+        }
+
+
+
+
+
+
 
 
     </script>
