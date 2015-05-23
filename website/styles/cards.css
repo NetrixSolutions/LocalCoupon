@@ -1,5 +1,6 @@
 .card-stream {
     padding-top: 4rem;
+    margin: 0 3rem;
 }
 
 .discount-card {
@@ -70,21 +71,24 @@
 .title {
     margin: 1rem 0 0 0;
     color: #333;
-    font-size: 3rem;
-    line-height: 3rem;
+    font-size: 2.5rem;
+    line-height: 2.5rem;
+    font-weight: lighter;
 }
 
 .sub-title {
     color: #999;
-    margin: 0.75rem 0 2rem 0;
+    margin: 0.75rem 0 1rem 0;
     font-size: 1rem;
     line-height: 1rem;
+    font-weight: 300;
 }
 
 .description {
     color: #333;
     font-size: 1.2rem;
     font-weight: lighter;
+    margin-bottom: 1rem;
 }
 
 .actions {
@@ -186,4 +190,11 @@ background-color: rgba(85,172,238,0.15);
     color: rgb(0, 200, 83);
     font-size: 1.2rem;
     line-height: 1.2rem;
+}
+
+
+@media (max-width: 640px) {
+    .card-stream {
+        margin: 0 1rem;
+    }
 }
