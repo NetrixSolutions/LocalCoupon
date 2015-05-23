@@ -216,7 +216,7 @@
                 <img class="shop-logo" src="{{::c.logo_url}}">
             </div>
             <div class="discount-container">
-                <div class="badge">
+                <div class="badge" ng-if="c.badge_type">
                     <!--<img class="badge-icon" ng-if="c.badge_type == 'twitter'" src="img/twitter.png"/>-->
                     <img class="badge-icon" ng-if="c.badge_type" ng-src="{{::badgeIcons[c.badge_type]}}"/>
                 </div>
