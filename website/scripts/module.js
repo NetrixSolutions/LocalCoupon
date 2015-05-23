@@ -104,7 +104,7 @@ angular.module('contextDiscount', ['ngMaterial', 'ngTextTruncate', 'ngSanitize']
                 'discount_text': '',
                 'title': '300g Jona Apples',
                 subtitle: '200m away, 6 days valid',
-                'description': 'Jona Apples from Spain. <br/> Package of 6 apples.',
+                'description': 'Jona Apples from Spain. Package of 6 apples.',
                 'social_discount': [],
                 'badge_type': '',
                 'position': {
