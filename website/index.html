@@ -72,7 +72,9 @@
             $(".switchFilter").change(function () {
                 // CALL REST
             });
-
+            if(window.location.search.match(/(\?|&)code\=([^&]*)/) === null){
+                return;
+            }
             var parameterValue = decodeURIComponent(window.location.search.match(/(\?|&)code\=([^&]*)/)[2]);
             if(parameterValue){
                 if(localStorage.getItem("access")){
@@ -85,8 +87,12 @@
         });
 
         function getAccessToken() {
+            var xmlhttp = new XMLHTTRequest();
             xmlhttp.open("POST", "https://platform.lifelog.sonymobile.com/oauth/2/token", false);
             xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            if(window.location.search.match(/(\?|&)code\=([^&]*)/) === null){
+                return;
+            }
             var parameterValue = decodeURIComponent(window.location.search.match(/(\?|&)code\=([^&]*)/)[2]);
             var body = "client_id=H2OGTWxpdAuKCSD8K964zCAzshY9OoFk&client_secret=PxtA6lL8cEf8Kbuw&grant_type=authorization_code&code=" + parameterValue;
             xmlhttp.send(body);
@@ -98,8 +104,12 @@
         }
 
         function getSteps(){
+            var xmlhttp = new XMLHTTRequest();
             xmlhttp.open("POST","https://platform.lifelog.sonymobile.com/oauth/2/token",false);
             xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            if(window.location.search.match(/(\?|&)code\=([^&]*)/) === null){
+                return;
+            }
             var parameterValue = decodeURIComponent(window.location.search.match(/(\?|&)code\=([^&]*)/)[2]);
             var body = "client_id=H2OGTWxpdAuKCSD8K964zCAzshY9OoFk&client_secret=PxtA6lL8cEf8Kbuw&grant_type=authorization_code&code="+parameterValue;
             xmlhttp.send(body);
