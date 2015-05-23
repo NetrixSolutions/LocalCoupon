@@ -1,0 +1,90 @@
+application: context-discount
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+
+- url: /website/(.*\.css)
+  mime_type: text/css
+  static_files: website/\1
+  upload: website/(.*\.css)
+
+- url: /website/(.*\.html)
+  mime_type: text/html
+  static_files: website/\1
+  upload: website/(.*\.html)
+
+- url: /website/(.*\.js)
+  mime_type: text/javascript
+  static_files: website/\1
+  upload: website/(.*\.js)
+
+- url: /website/(.*\.txt)
+  mime_type: text/plain
+  static_files: website/\1
+  upload: website/(.*\.txt)
+
+- url: /website/(.*\.xml)
+  mime_type: application/xml
+  static_files: website/\1
+  upload: website/(.*\.xml)
+
+ # image files
+- url: /website/(.*\.(png))
+  mime_type: image/png
+  static_files: website/\1
+  upload: website/(.*\.(png))
+
+- url: /website/(.*\.(jpg|JPG))
+  mime_type: image/jpg
+  static_files: website/\1
+  upload: website/(.*\.(jpg|JPG))
+
+- url: /website/(.*\.(gif))
+  mime_type: image/gif
+  static_files: website/\1
+  upload: website/(.*\.(gif))
+
+# fonts
+- url: /website/(.*\.(ttf))
+  mime_type: application/octet-stream
+  static_files: website/\1
+  upload: website/(.*\.(ttf))
+
+- url: /website/(.*\.(woff))
+  mime_type: application/font-woff
+  static_files: website/\1
+  upload: website/(.*\.(woff))
+
+- url: /website/(.*\.(woff2))
+  mime_type: application/font-woff2
+  static_files: website/\1
+  upload: website/(.*\.(woff2))
+
+ # site root
+- url: /website/
+  static_files: website/index.html
+  upload: website/index.html
+
+skip_files:
+  - ^(.*/)?app\.yaml
+  - ^(.*/)?app\.yml
+  - ^(.*/)?#.*#
+  - ^(.*/)?.*~
+  - ^(.*/)?.*\.py[co]
+  - ^(.*/)?.*/RCS/.*
+  - ^(.*/)?\..*
+  - ^(.*/)?tests$
+  - ^(.*/)?test$
+  - ^test/(.*/)?
+  - ^COPYING.LESSER
+  - ^README\..*
+  - \.gitignore
+  - ^\.git/.*
+  - \.*\.lint$
+  - ^fabfile\.py
+  - ^testrunner\.py
+  - ^grunt\.js
+  - ^node_modules/(.*/)?
