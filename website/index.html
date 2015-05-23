@@ -1,4 +1,4 @@
-<html ng-app="crowdpaths">
+<html>
 <head>
     <title>Local Coupon</title>
 
@@ -9,7 +9,7 @@
     <link rel="icon" href="img/favicon/favicon.png" type="image/x-icon"/>
 
     <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="styles/materialize.min.css" media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="styles/materialize.min.css" />
 
     <!-- Readmore and JQuery -->
     <script src="libs/jquery-2.1.4.min.js"></script>
@@ -17,29 +17,68 @@
 
     <!-- Angulars Material CSS now available via Google CDN; version 0.8 used here
     <link rel="stylesheet" href="https://rawgit.com/angular/bower-material/master/angular-material.css">-->
-    <link rel="stylesheet" href="materialize.min.css">
 
-    <!-- Angular Material Dependencies -->
+    <script type="text/javascript" src="scripts/materialize.min.js"></script>
+
+    <!-- Angular Material Dependencies
     <script src="libs/angular.min.js"></script>
     <script src="libs/angular-animate.min.js"></script>
     <script src="libs/angular-aria.min.js"></script>
 
-    <!-- Angular Material Javascript now available via Google CDN; version 0.8 used here -->
     <script src="libs/angular-material.js"></script>
     <script src="libs/ng-text-truncate.js"></script>
-    <script src="libs/pace.min.js"></script>
+    <script src="libs/pace.min.js"></script>-->
 
-    <!-- Include all your script files here -->
-    <script src="scripts/module.js"></script>
-    <script type="text/javascript" src="scripts/materialize.min.js"></script>
+    <!-- Include all your script files here
+    <script src="scripts/module.js"></script>-->
+
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/js/materialize.min.js"></script>-->
 
     <!-- Add styles -->
     <link rel="stylesheet" type="text/css" href="styles/cards.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="styles/app.css">
 
+    <script type="text/javascript">
+        $( document ).ready(function() {
+            $('.button-collapse').sideNav({
+                menuWidth: 400,
+                edge: 'left',
+                closeOnClick: true
+            });
+
+        });
+
+
+
+
+
+
+    </script>
+
 </head>
-<body ng-controller="MainController" layout="row">
+<body>
+    <nav id="navbar">
+        <div class="nav-wrapper">
+            <a href="#!" class="center brand-logo">LocalDiscounts</a>
+            <ul class="left show-on-large">
+                <li>
+                     <a href="#" id="navicon" data-activates="slide-out" class="button-collapse show-on-large"><i class="mdi-navigation-menu"></i></a>
+                </li>
+            </ul>
+        </div>
+        <div id="slide-out" class="side-nav">
+            <div id="profile">
+                <img id="profileBG" src="img/palme.jpg" />
+                <img id="profilPic" src="img/profile.png" />
+
+            </div>
+            <a href="#!">First Sidebar Link</a>
+            <a href="#!">Second Sidebar Link</a>
+        </div>
+    </nav>
+
+
 
 </body>
 </html>
