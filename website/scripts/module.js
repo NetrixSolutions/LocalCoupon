@@ -71,6 +71,10 @@ angular.module('contextDiscount', ['ngMaterial', 'ngTextTruncate', 'ngSanitize']
             //dataService.setStreamData(offers);
         };
 
+        $scope.badgeIcons = {
+           'twitter': 'img/twitter.png'
+        };
+
         $scope.cards = [
             {
                 'type': 'groceries',
@@ -245,12 +249,12 @@ angular.module('contextDiscount', ['ngMaterial', 'ngTextTruncate', 'ngSanitize']
         ]
 
     })
-    //.filter('suffixFilter', function () {
+    //.filter('badgeFilter', function () {
     //    return function (input) {
-    //        if (input.indexOf("%") == -1) {
-    //            return input + " Eur";
+    //        if (input.indexOf("twitter") > -1) {
+    //            return "img/twitter.png";
     //        }
-    //        return input;
+    //        return "";
     //    }
     //})
     .config(function ($mdThemingProvider) {

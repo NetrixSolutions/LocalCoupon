@@ -170,7 +170,8 @@
             </div>
             <div class="discount-container">
                 <div class="badge">
-                    <img class="badge-icon" ng-if="c.badge_type == 'twitter'" src="img/twitter.png"/>
+                    <!--<img class="badge-icon" ng-if="c.badge_type == 'twitter'" src="img/twitter.png"/>-->
+                    <img class="badge-icon" ng-if="c.badge_type" ng-src="{{::badgeIcons[c.badge_type]}}"/>
                 </div>
                 <span class="price" ng-if="c.discount_text_top">{{::c.discount_text_top}} €</span>
                 <span class="discount" ng-if="c.discount_text_bottom">{{::c.discount_text_bottom}}</span>
