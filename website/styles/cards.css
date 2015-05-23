@@ -29,13 +29,13 @@
 .discount-container {
     display: block;
     height: 50%;
-    background-color: #00c853;
+    /*background-color: #00c853;*/
     padding: 0.5rem 1rem;
 }
 
 .price {
     display: block;
-    color: white;
+    /*color: white;*/
     font-size: 3rem;
     text-align: center;
     font-weight: ligher;
@@ -43,7 +43,7 @@
 
 .discount {
     display: block;
-    color: white;
+    /*color: white;*/
     font-size: 3rem;
     text-align: center;
     font-weight: bolder;
@@ -88,10 +88,25 @@
     height: 3rem;
     width: 3rem;
     margin-left: 1.5rem;
-    background-color: rgb(0, 200, 83);
+    /*background-color: rgb(0, 200, 83);*/
     border-radius: 50%;
     text-align: center;
-    color: white;
+    /*color: white;*/
     line-height: 3rem;
     font-size: 1.5rem;
+}
+
+.club {
+    background-color: black;
+    color: white;
+}
+
+.fitness {
+    background-color: rgb(0, 200, 83);
+    color: white;
+}
+
+.groceries {
+    background-color: #FFC107;
+    color: #333;
 }
