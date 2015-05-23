@@ -1,5 +1,5 @@
 angular.module('contextDiscount', ['ngMaterial', 'ngTextTruncate', 'ngSanitize'])
-    .controller('MainController', function ($scope, dataService, $mdSidenav, $mdMedia, $mdDialog, $window, $log) {
+    .controller('MainController', function ($scope, $window, $log) {
 
         $scope.badgeIcons = {
             'twitter': 'img/twitter.png'

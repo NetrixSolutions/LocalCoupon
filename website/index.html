@@ -40,7 +40,7 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="styles/app.css">
 
-    <script>window.twttr = (function(d, s, id) {
+    <script>window.twttr = (function (d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0],
                 t = window.twttr || {};
         if (d.getElementById(id)) return t;
@@ -50,7 +50,7 @@
         fjs.parentNode.insertBefore(js, fjs);
 
         t._e = [];
-        t.ready = function(f) {
+        t.ready = function (f) {
             t._e.push(f);
         };
 
@@ -81,22 +81,19 @@
                 else {
                     getAccessToken();
                 }
-
             }
-
         });
 
-        function getAccessToken(){
-            xmlhttp.open("POST","https://platform.lifelog.sonymobile.com/oauth/2/token",false);
-            xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        function getAccessToken() {
+            xmlhttp.open("POST", "https://platform.lifelog.sonymobile.com/oauth/2/token", false);
+            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             var parameterValue = decodeURIComponent(window.location.search.match(/(\?|&)code\=([^&]*)/)[2]);
-            var body = "client_id=H2OGTWxpdAuKCSD8K964zCAzshY9OoFk&client_secret=PxtA6lL8cEf8Kbuw&grant_type=authorization_code&code="+parameterValue;
+            var body = "client_id=H2OGTWxpdAuKCSD8K964zCAzshY9OoFk&client_secret=PxtA6lL8cEf8Kbuw&grant_type=authorization_code&code=" + parameterValue;
             xmlhttp.send(body);
             var jsonResponse = JSON.parse(xmlhttp.responseText);
-            console.log("JSON: "+jsonResponse);
+            console.log(jsonResponse);
 
-            localStorage.setItem("access", jsonResponse[access-token]);
-            console.log("ACCESS-TOKEN:"+localStorage.getItem("access"));
+            localStorage.setItem("access", jsonResponse[access - token]);
 
         }
 
@@ -127,7 +124,7 @@
 <body ng-controller="MainController">
 <nav id="navbar">
     <div class="nav-wrapper">
-        <a href="#!" class="center brand-logo">LocalDiscounts</a>
+        <a href="#!" class="center brand-logo">ContextDiscount</a>
         <ul class="left show-on-large">
             <li>
                 <a href="#" id="navicon" data-activates="slide-out" class="button-collapse show-on-large"><i
@@ -211,6 +208,18 @@
             <label for="filter7" class="labelFilter right"></label>
         </div>
 
+        <div class="filterBox" style="margin-bottom: 50px;">
+            <a href="https://platform.lifelog.sonymobile.com/oauth/2/authorize?client_id=H2OGTWxpdAuKCSD8K964zCAzshY9OoFk&scope=lifelog.profile.read+lifelog.activities.read+lifelog.locations.read">
+                <div id="lifeLogButton">
+                    <img id="lifelogLogo" src="img/lifelog.png"/>
+
+                    <div id="lifeLogSpanContainer">
+                        <span id="lifeLogSpan">Connect with</span>
+                        <span id="lifeLogSpan2">Lifelog</span>
+                    </div>
+                </div>
+            </a>
+        </div>
 
         <!-- <div class="switch">
              <label>
@@ -231,7 +240,7 @@
                 <img class="shop-logo" src="{{::c.logo_url}}">
             </div>
             <div class="discount-container">
-                <div class="badge">
+                <div class="badge" ng-if="c.badge_type">
                     <!--<img class="badge-icon" ng-if="c.badge_type == 'twitter'" src="img/twitter.png"/>-->
                     <img class="badge-icon" ng-if="c.badge_type" ng-src="{{::badgeIcons[c.badge_type]}}"/>
                 </div>
