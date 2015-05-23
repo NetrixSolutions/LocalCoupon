@@ -15,16 +15,17 @@
 }
 
 .shop-logo-container {
-    padding: 1rem;
     width: 50%;
     float: left;
+    height: 6rem;
 }
 
 .shop-logo {
     display: inline;
     width: 100%;
     object-fit: contain;
-    max-height: 6rem;
+    height: 6rem;
+    padding: 0.25rem;
 }
 
 .discount-container {
@@ -49,10 +50,15 @@
     font-weight: bolder;
 }
 
+.only-attr {
+    line-height: 4.75rem;
+    font-size: 2.5rem;
+    font-weight: lighter;
+}
+
 .bottom-container {
     float: right;
     padding: 0 2rem;
-    /*width: 60%;*/
     height: 20rem;
 }
 
@@ -113,7 +119,7 @@
 }
 .action-item:hover {
     cursor: pointer;
-    background-color: rgb(0, 200, 83);
+    background-color: rgb(163, 196, 5);
     color: white;
 }
 
@@ -123,7 +129,7 @@
 }
 
 .fitness {
-    background-color: rgb(0, 200, 83);
+    background-color: rgb(163, 196, 5);
     color: white;
 }
 
@@ -176,7 +182,7 @@
 .challenge {
     display: block;
     padding: 1rem;
-    background-color: rgba(0, 200, 83, 0.2);
+    background-color: rgba(163, 196, 5, 0.2);
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 .challenge:hover {
@@ -194,7 +200,7 @@
 }
 
 .challenge-fill {
-    background-color: rgb(0, 200, 83);
+    background-color: rgb(163, 196, 5);
     height: 100%;
     width: 34%;
 }
@@ -207,7 +213,7 @@
 }
 
 .challenge-text {
-    color: rgb(0, 200, 83);
+    color: rgb(163, 196, 5);
     font-size: 1.2rem;
     line-height: 1.2rem;
 }
