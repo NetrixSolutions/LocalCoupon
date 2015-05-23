@@ -53,6 +53,20 @@
     height: 20rem;
 }
 
+.badge {
+    float: right;
+    width: 3rem;
+    margin-right: -2rem;
+    margin-top: 1rem;
+    height: 2rem;
+    padding-top: 0.5rem;
+    padding-left: 0.5rem;
+}
+
+.badge-icon {
+    height: 1rem;
+}
+
 .title {
     margin: 1rem 0 0 0;
     color: #333;
