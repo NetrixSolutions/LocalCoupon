@@ -74,7 +74,7 @@ angular.module('contextDiscount', ['ngMaterial', 'ngTextTruncate', 'ngSanitize']
         $scope.cards = [
             {
                 'type': 'groceries',
-                'logo_url': './img/rewe-logo.jpg',
+                'logo_url': './img/rewe_logo.png',
                 'discount_text_top': '1,42',
                 'discount_text_bottom': '-15%',
                 'discount_text': '',
@@ -113,7 +113,7 @@ angular.module('contextDiscount', ['ngMaterial', 'ngTextTruncate', 'ngSanitize']
 
             {
                 'type': 'club',
-                'logo_url': './img/couch-kapitaen.jpg',
+                'logo_url': './img/couch-kapitaen.png',
                 'discount_text_top': '',
                 'discount_text_bottom': '',
                 'discount_text': '2,50 &#8364;',
@@ -219,7 +219,7 @@ angular.module('contextDiscount', ['ngMaterial', 'ngTextTruncate', 'ngSanitize']
 
             {
                 'type': 'fitness',
-                'logo_url': './img/Dean_and_David.jpg',
+                'logo_url': './img/Dean_and_David.png',
                 'discount_text_top': '2,50',
                 'discount_text_bottom': '-10%',
                 'discount_text': '',
