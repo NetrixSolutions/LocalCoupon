@@ -1,4 +1,4 @@
-angular.module('contextDiscount', ['ngMaterial', 'ngTextTruncate'])
+angular.module('contextDiscount', ['ngMaterial', 'ngTextTruncate', 'ngSanitize'])
     .factory('dataService', function () {
         //var streamData = {};
         var dialog;
@@ -80,7 +80,7 @@ angular.module('contextDiscount', ['ngMaterial', 'ngTextTruncate'])
                 'discount_text': '',
                 'title': 'JA! 1kg Meat',
                 subtitle: '300 m away, 5 days valid',
-                'description': 'Pork, Beef \<br/\> Origin: Germany \<br/\> Best meat:PorkandBeefmixedfor roasting orbarbecuingwith the wholefamily',
+                'description': 'Pork, Beef - Origin: Germany - Best meat:Pork and Beef mixed for roasting or barbecuing with the wholefamily',
                 'social_discount': [],
                 'badge_type': '',
                 'position': {
@@ -116,7 +116,7 @@ angular.module('contextDiscount', ['ngMaterial', 'ngTextTruncate'])
                 'logo_url': './img/couch-kapitaen.jpg',
                 'discount_text_top': '',
                 'discount_text_bottom': '',
-                'discount_text': '2,50',
+                'discount_text': '2,50 &#8364;',
                 'title': 'Jacky Cola...',
                 'subtitle': '600m away',
                 'description': '... for 2,50. All night long! #ContextDiscount',
@@ -141,7 +141,7 @@ angular.module('contextDiscount', ['ngMaterial', 'ngTextTruncate'])
                 'logo_url': './img/the-old-firehouse-logo.gif',
                 'discount_text_top': '',
                 'discount_text_bottom': '',
-                'discount_text': '4,50',
+                'discount_text': '4,50 &#8364;',
                 'title': 'Cocktail Happy Hour',
                 'description': 'Jumbo cocktails for 4,50',
                 'social_discount': [
@@ -193,7 +193,7 @@ angular.module('contextDiscount', ['ngMaterial', 'ngTextTruncate'])
 
             {
                 'type': 'fitness',
-                'logo_url': './Fitness_First_Logo.png',
+                'logo_url': './img/Fitness_First_Logo.png',
                 'discount_text_top': '',
                 'discount_text_bottom': '',
                 'discount_text': 'Free',
@@ -219,7 +219,7 @@ angular.module('contextDiscount', ['ngMaterial', 'ngTextTruncate'])
 
             {
                 'type': 'fitness',
-                'logo_url': './Dean_and_David.jpg',
+                'logo_url': './img/Dean_and_David.jpg',
                 'discount_text_top': '2,50',
                 'discount_text_bottom': '-10%',
                 'discount_text': '',
@@ -245,8 +245,15 @@ angular.module('contextDiscount', ['ngMaterial', 'ngTextTruncate'])
         ]
 
     })
-    .
-    config(function ($mdThemingProvider) {
+    //.filter('suffixFilter', function () {
+    //    return function (input) {
+    //        if (input.indexOf("%") == -1) {
+    //            return input + " Eur";
+    //        }
+    //        return input;
+    //    }
+    //})
+    .config(function ($mdThemingProvider) {
         $mdThemingProvider.theme('default')
             .primaryPalette('indigo')
             .accentPalette('orange');

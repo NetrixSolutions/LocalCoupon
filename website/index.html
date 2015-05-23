@@ -9,7 +9,7 @@
     <link rel="icon" href="img/favicon/favicon.png" type="image/x-icon"/>
 
     <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="styles/materialize.min.css" />
+    <link type="text/css" rel="stylesheet" href="styles/materialize.min.css"/>
 
     <!-- Readmore and JQuery -->
     <script src="libs/jquery-2.1.4.min.js"></script>
@@ -24,6 +24,7 @@
     <script src="libs/angular.min.js"></script>
     <script src="libs/angular-animate.min.js"></script>
     <script src="libs/angular-aria.min.js"></script>
+    <script src="libs/angular-sanitize.min.js"></script>
 
     <script src="libs/angular-material.js"></script>
     <script src="libs/ng-text-truncate.js"></script>
@@ -40,161 +41,168 @@
     <link rel="stylesheet" type="text/css" href="styles/app.css">
 
     <script type="text/javascript">
-        $( document ).ready(function() {
+        $(document).ready(function () {
             $('.button-collapse').sideNav({
                 menuWidth: 300,
                 edge: 'left',
                 closeOnClick: true
             });
 
-            $("#switchFilterAll").change(function() {
-                   $(".switchFilter").prop("checked", $("#switchFilterAll").prop("checked"));
+            $("#switchFilterAll").change(function () {
+                $(".switchFilter").prop("checked", $("#switchFilterAll").prop("checked"));
             });
 
-            $(".switchFilter").change(function(){
-                 // CALL REST
+            $(".switchFilter").change(function () {
+                // CALL REST
             });
 
         });
-
-
-
-
 
 
     </script>
 
 </head>
 <body ng-controller="MainController">
-    <nav id="navbar">
-        <div class="nav-wrapper">
-            <a href="#!" class="center brand-logo">LocalDiscounts</a>
-            <ul class="left show-on-large">
-                <li>
-                     <a href="#" id="navicon" data-activates="slide-out" class="button-collapse show-on-large"><i class="mdi-navigation-menu"></i></a>
-                </li>
-            </ul>
-        </div>
+<nav id="navbar">
+    <div class="nav-wrapper">
+        <a href="#!" class="center brand-logo">LocalDiscounts</a>
+        <ul class="left show-on-large">
+            <li>
+                <a href="#" id="navicon" data-activates="slide-out" class="button-collapse show-on-large"><i
+                        class="mdi-navigation-menu"></i></a>
+            </li>
+        </ul>
+    </div>
 
-        <div id="slide-out" class="side-nav">
-            <div id="profile">
-                <img id="profileBG" src="img/cloud.jpg" />
-                <img id="profilePic" src="img/patrick.jpg" />
-                <div id="profileSpans">
-                    <span id="profileName">Patrick Herholz</span>
-                    <span id="profileTwitter">@herholz</span>
-                </div>
+    <div id="slide-out" class="side-nav">
+        <div id="profile">
+            <img id="profileBG" src="img/cloud.jpg"/>
+            <img id="profilePic" src="img/patrick.jpg"/>
 
+            <div id="profileSpans">
+                <span id="profileName">Patrick Herholz</span>
+                <span id="profileTwitter">@herholz</span>
             </div>
-            <div class="switch">
-                <label>
-                    <i class="fa fa-2x fa-check-square"></i>
-                    <span class="switchTitle" style="margin-left: 43px;">All</span>
-                    <input id="switchFilterAll" type="checkbox" checked="checked">
-                    <span class="right lever"></span>
-                </label>
-            </div>
-            <div class="filterBox">
-                <a class="iconFilter"><i class="fa fa-2x fa-cutlery"></i></a>
-                <div class="switchTitle">Fast Food</div>
-                <input type="checkbox" class="filled-in switchFilter" id="filter1" checked="checked" />
-                <label for="filter1" class="labelFilter right"></label>
-            </div>
-
-            <div class="filterBox">
-                <a class="iconFilter"><i class="fa fa-2x fa-shopping-cart"></i></a>
-                <div class="switchTitle">Grocery</div>
-                <input type="checkbox" class="filled-in switchFilter" id="filter2" checked="checked" />
-                <label for="filter2" class="labelFilter right"></label>
-            </div>
-
-            <div class="filterBox">
-                <a class="iconFilter"><i class="fa fa-2x fa-desktop"></i></a>
-                <div class="switchTitle">Electronics</div>
-                <input type="checkbox" class="filled-in switchFilter" id="filter3" checked="checked" />
-                <label for="filter3" class="labelFilter right"></label>
-            </div>
-
-            <div class="filterBox">
-                <a class="iconFilter"><i class="fa fa-2x fa-beer"></i></a>
-                <div class="switchTitle">Bars</div>
-                <input type="checkbox" class="filled-in switchFilter" id="filter4" checked="checked" />
-                <label for="filter4" class="labelFilter right"></label>
-            </div>
-
-            <div class="filterBox">
-                <a class="iconFilter"><i class="fa fa-2x fa-shopping-cart"></i></a>
-                <div class="switchTitle">Clothes</div>
-                <input type="checkbox" class="filled-in switchFilter"  id="filter5" checked="checked" />
-                <label for="filter5" class="labelFilter right"></label>
-            </div>
-
-            <div class="filterBox">
-                <a class="iconFilter"><i class="fa fa-2x fa-book"></i></a>
-                <div class="switchTitle">Literature</div>
-                <input type="checkbox" class="filled-in switchFilter" id="filter6" checked="checked" />
-                <label for="filter6" class="labelFilter right"></label>
-            </div>
-
-            <div class="filterBox">
-                <a class="iconFilter"><i class="fa fa-2x fa-bicycle"></i></a>
-                <div class="switchTitle">Sports</div>
-                <input type="checkbox" class="filled-in switchFilter"  id="filter7" checked="checked" />
-                <label for="filter7" class="labelFilter right"></label>
-            </div>
-
-
-
-
-           <!-- <div class="switch">
-                <label>
-                    <i class="fa fa-2x fa-bicycle"></i>
-                    <span class="switchTitle">Sports</span>
-                    <input class="switchFilter" type="checkbox" checked="checked">
-                    <span class="right lever"></span>
-                </label>
-            </div>-->
 
         </div>
-    </nav>
+        <div class="switch">
+            <label>
+                <i class="fa fa-2x fa-check-square"></i>
+                <span class="switchTitle" style="margin-left: 43px;">All</span>
+                <input id="switchFilterAll" type="checkbox" checked="checked">
+                <span class="right lever"></span>
+            </label>
+        </div>
+        <div class="filterBox">
+            <a class="iconFilter"><i class="fa fa-2x fa-cutlery"></i></a>
 
-    <div class="card-stream">
-        <div class="card discount-card"  ng-repeat="c in cards">
-            <div class="top-container {{c.type}}">
-                <div class="shop-logo-container">
-                    <img class="shop-logo" src="{{::c.logo_url}}">
-                </div>
-                <div class="discount-container">
-                    <div class="badge">
-                        <img class="badge-icon" ng-if="c.badge_type == 'Twitter'" src="img/twitter.png" />
-                    </div>
-                    <span class="price" ng-if="m.discount_text_top != ''">{{::c.discount_text_top}}</span>
-                    <span class="discount" ng-if="c.discount_text_bottom != ''">{{::c.discount_text_bottom}}</span>
-                    <span class="discount only-attr" ng-if="c.discount_text != ''">{{::c.discount_text}}</span>
-                </div>
+            <div class="switchTitle">Fast Food</div>
+            <input type="checkbox" class="filled-in switchFilter" id="filter1" checked="checked"/>
+            <label for="filter1" class="labelFilter right"></label>
+        </div>
+
+        <div class="filterBox">
+            <a class="iconFilter"><i class="fa fa-2x fa-shopping-cart"></i></a>
+
+            <div class="switchTitle">Grocery</div>
+            <input type="checkbox" class="filled-in switchFilter" id="filter2" checked="checked"/>
+            <label for="filter2" class="labelFilter right"></label>
+        </div>
+
+        <div class="filterBox">
+            <a class="iconFilter"><i class="fa fa-2x fa-desktop"></i></a>
+
+            <div class="switchTitle">Electronics</div>
+            <input type="checkbox" class="filled-in switchFilter" id="filter3" checked="checked"/>
+            <label for="filter3" class="labelFilter right"></label>
+        </div>
+
+        <div class="filterBox">
+            <a class="iconFilter"><i class="fa fa-2x fa-beer"></i></a>
+
+            <div class="switchTitle">Bars</div>
+            <input type="checkbox" class="filled-in switchFilter" id="filter4" checked="checked"/>
+            <label for="filter4" class="labelFilter right"></label>
+        </div>
+
+        <div class="filterBox">
+            <a class="iconFilter"><i class="fa fa-2x fa-shopping-cart"></i></a>
+
+            <div class="switchTitle">Clothes</div>
+            <input type="checkbox" class="filled-in switchFilter" id="filter5" checked="checked"/>
+            <label for="filter5" class="labelFilter right"></label>
+        </div>
+
+        <div class="filterBox">
+            <a class="iconFilter"><i class="fa fa-2x fa-book"></i></a>
+
+            <div class="switchTitle">Literature</div>
+            <input type="checkbox" class="filled-in switchFilter" id="filter6" checked="checked"/>
+            <label for="filter6" class="labelFilter right"></label>
+        </div>
+
+        <div class="filterBox">
+            <a class="iconFilter"><i class="fa fa-2x fa-bicycle"></i></a>
+
+            <div class="switchTitle">Sports</div>
+            <input type="checkbox" class="filled-in switchFilter" id="filter7" checked="checked"/>
+            <label for="filter7" class="labelFilter right"></label>
+        </div>
+
+
+        <!-- <div class="switch">
+             <label>
+                 <i class="fa fa-2x fa-bicycle"></i>
+                 <span class="switchTitle">Sports</span>
+                 <input class="switchFilter" type="checkbox" checked="checked">
+                 <span class="right lever"></span>
+             </label>
+         </div>-->
+
+    </div>
+</nav>
+
+<div class="card-stream">
+    <div class="card discount-card" ng-repeat="c in cards">
+        <div class="top-container {{c.type}}">
+            <div class="shop-logo-container">
+                <img class="shop-logo" src="{{::c.logo_url}}">
             </div>
-            <div class="bottom-container">
+            <div class="discount-container">
+                <div class="badge">
+                    <img class="badge-icon" ng-if="c.badge_type == 'Twitter'" src="img/twitter.png"/>
+                </div>
+                <span class="price" ng-if="c.discount_text_top">{{::c.discount_text_top}} €</span>
+                <span class="discount" ng-if="c.discount_text_bottom">{{::c.discount_text_bottom}}</span>
+                    <span class="discount only-attr" ng-if="c.discount_text"
+                          ng-bind-html="c.discount_text">
+                    </span>
+            </div>
+        </div>
+        <div class="bottom-container">
 
-                <h1 class="title">{{::c.title}}</h1>
-                <h2 class="sub-title">{{::c.subtitle}}</h2>
-                <div class="description">
-                    {{::c.description}}
+            <h1 class="title">{{::c.title}}</h1>
+
+            <h2 class="sub-title">{{::c.subtitle}}</h2>
+
+            <div class="description">
+                {{::c.description}}
+            </div>
+            <div class="social-discount waves-effect" ng-class="s.type" ng-repeat="s in c.social_discount">
+                <div class="challenge-bar" ng-if="s.type == Lifelog">
+                    <div class="challenge-fill" ng-style="{width: {{::s.progress}} + '%'}"></div>
                 </div>
-                <div class="social-discount waves-effect" ng-class="s.type" ng-repeat="s in c.social_discount">
-                    <div class="challenge-bar" ng-if="s.type == Lifelog">
-                        <div class="challenge-fill" ng-style="{width: {{::s.progress}} + '%'}"></div>
-                    </div>
-                    <img class="social-icon" ng-if="s.type == 'Twitter'" src="img/twitter.png" />
-                    <span class="social-text">{{::s.discount_text}}</span>
-                </div>
-                <div class="actions">
-                    <div class="action-item waves-effect mdi-maps-navigation"></div>
-                    <div class="action-item waves-effect mdi-action-bookmark-outline"></div>
-                    <div class="action-item waves-effect mdi-social-share"></div>
-                </div>
+                <img class="social-icon" ng-if="s.type == 'Twitter'" src="img/twitter.png"/>
+                <span class="social-text">{{::s.discount_text}}</span>
+            </div>
+            <div class="actions">
+                <div class="action-item waves-effect mdi-maps-navigation"></div>
+                <div class="action-item waves-effect mdi-action-bookmark-outline"></div>
+                <div class="action-item waves-effect mdi-social-share"></div>
             </div>
         </div>
     </div>
+</div>
 
 </body>
 </html>
