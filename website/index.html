@@ -170,7 +170,8 @@
             </div>
             <div class="discount-container">
                 <div class="badge">
-                    <img class="badge-icon" ng-if="c.badge_type == 'Twitter'" src="img/twitter.png"/>
+                    <!--<img class="badge-icon" ng-if="c.badge_type == 'twitter'" src="img/twitter.png"/>-->
+                    <img class="badge-icon" ng-if="c.badge_type" ng-src="{{::badgeIcons[c.badge_type]}}"/>
                 </div>
                 <span class="price" ng-if="c.discount_text_top">{{::c.discount_text_top}} €</span>
                 <span class="discount" ng-if="c.discount_text_bottom">{{::c.discount_text_bottom}}</span>
@@ -192,9 +193,9 @@
                 <div class="challenge-bar" ng-if="s.type == Lifelog">
                     <div class="challenge-fill" ng-style="{width: {{::s.progress}} + '%'}"></div>
                 </div>
-                <img class="social-icon" ng-if="s.type == 'Twitter'" src="img/twitter.png"/>
+                <img class="social-icon" ng-if="s.type == 'twitter'" src="img/twitter.png"/>
                 <img class="social-icon" ng-if="s.type == 'facebook'" src="img/facebook.png"/>
-                <img class="social-icon" ng-if="s.type == 'Xing'" src="img/xing.png"/>
+                <img class="social-icon" ng-if="s.type == 'xing'" src="img/xing.png"/>
                 <span class="social-text">{{::s.discount_text}}</span>
             </div>
             <div class="actions">
