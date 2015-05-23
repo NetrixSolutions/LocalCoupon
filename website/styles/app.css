@@ -1,6 +1,6 @@
 #navbar {
-    background-color: #00C853;
-    position: absolute;
+    background-color: #1565C0;
+    position: fixed;
     top: 0;
     z-index: 9999;
 }
