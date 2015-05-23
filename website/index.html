@@ -42,9 +42,17 @@
     <script type="text/javascript">
         $( document ).ready(function() {
             $('.button-collapse').sideNav({
-                menuWidth: 400,
+                menuWidth: 300,
                 edge: 'left',
                 closeOnClick: true
+            });
+
+            $("#switchFilterAll").change(function() {
+                   $(".switchFilter").prop("checked", $("#switchFilterAll").prop("checked"));
+            });
+
+            $(".switchFilter").change(function(){
+                 // CALL REST
             });
 
         });
@@ -67,14 +75,86 @@
                 </li>
             </ul>
         </div>
+
         <div id="slide-out" class="side-nav">
             <div id="profile">
-                <img id="profileBG" src="img/palme.jpg" />
-                <img id="profilPic" src="img/profile.png" />
+                <img id="profileBG" src="img/cloud.jpg" />
+                <img id="profilePic" src="img/patrick.jpg" />
+                <div id="profileSpans">
+                    <span id="profileName">Patrick Herholz</span>
+                    <span id="profileTwitter">@herholz</span>
+                </div>
 
             </div>
-            <a href="#!">First Sidebar Link</a>
-            <a href="#!">Second Sidebar Link</a>
+            <div class="switch">
+                <label>
+                    <i class="fa fa-2x fa-check-square"></i>
+                    <span class="switchTitle" style="margin-left: 43px;">All</span>
+                    <input id="switchFilterAll" type="checkbox" checked="checked">
+                    <span class="right lever"></span>
+                </label>
+            </div>
+            <div class="filterBox">
+                <a class="iconFilter"><i class="fa fa-2x fa-cutlery"></i></a>
+                <div class="switchTitle">Fast Food</div>
+                <input type="checkbox" class="filled-in switchFilter" id="filter1" checked="checked" />
+                <label for="filter1" class="labelFilter right"></label>
+            </div>
+
+            <div class="filterBox">
+                <a class="iconFilter"><i class="fa fa-2x fa-shopping-cart"></i></a>
+                <div class="switchTitle">Grocery</div>
+                <input type="checkbox" class="filled-in switchFilter" id="filter2" checked="checked" />
+                <label for="filter2" class="labelFilter right"></label>
+            </div>
+
+            <div class="filterBox">
+                <a class="iconFilter"><i class="fa fa-2x fa-desktop"></i></a>
+                <div class="switchTitle">Electronics</div>
+                <input type="checkbox" class="filled-in switchFilter" id="filter3" checked="checked" />
+                <label for="filter3" class="labelFilter right"></label>
+            </div>
+
+            <div class="filterBox">
+                <a class="iconFilter"><i class="fa fa-2x fa-beer"></i></a>
+                <div class="switchTitle">Bars</div>
+                <input type="checkbox" class="filled-in switchFilter" id="filter4" checked="checked" />
+                <label for="filter4" class="labelFilter right"></label>
+            </div>
+
+            <div class="filterBox">
+                <a class="iconFilter"><i class="fa fa-2x fa-shopping-cart"></i></a>
+                <div class="switchTitle">Clothes</div>
+                <input type="checkbox" class="filled-in switchFilter"  id="filter5" checked="checked" />
+                <label for="filter5" class="labelFilter right"></label>
+            </div>
+
+            <div class="filterBox">
+                <a class="iconFilter"><i class="fa fa-2x fa-book"></i></a>
+                <div class="switchTitle">Literature</div>
+                <input type="checkbox" class="filled-in switchFilter" id="filter6" checked="checked" />
+                <label for="filter6" class="labelFilter right"></label>
+            </div>
+
+            <div class="filterBox">
+                <a class="iconFilter"><i class="fa fa-2x fa-bicycle"></i></a>
+                <div class="switchTitle">Sports</div>
+                <input type="checkbox" class="filled-in switchFilter"  id="filter7" checked="checked" />
+                <label for="filter7" class="labelFilter right"></label>
+            </div>
+
+
+
+
+           <!-- <div class="switch">
+                <label>
+                    <i class="fa fa-2x fa-bicycle"></i>
+                    <span class="switchTitle">Sports</span>
+                    <input class="switchFilter" type="checkbox" checked="checked">
+                    <span class="right lever"></span>
+                </label>
+            </div>-->
+
         </div>
     </nav>
 

@@ -1,22 +1,108 @@
 #navbar {
     background-color: #00C853;
-
 }
 
 #profile {
-
+    height: 120px;
+    display: block;
+    color: black;
 }
 
 #profilePic {
-    width: 100px;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    z-index: 999;
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    margin-left: 20px;
+    position:relative;
+    top: 30px;
+    border-radius: 60px;
+
 }
 
 #profileBG {
     position: absolute;
-    width: 100%;
-    z-index: -999;
+    object-fit: cover;
+    width: 300px;
+    height: 120px;
+    z-index: -900;
 }
 
+#profile span{
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    margin-left: 10px;
+    font-weight: 400;
+    font-size: 100%;
+}
+
+#profileName{
+    font-size: 150% !important;
+    font-weight: 300 !important;
+    margin-top: -30px;
+}
+
+#profileSpans{
+    background-color: rgba(255,255,255,0.4);
+    width: 235px;
+    margin-left: 50px;
+    padding-left: 45px;
+}
+
+.switch label input[type=checkbox]:checked+.lever {
+    background-color: #00C853 !important;
+}
+
+.switch label input[type=checkbox]:checked+.lever:after {
+    background-color: #008926 !important;
+}
+
+.switch {
+    margin-left: 10px;
+}
+
+.switch i{
+    margin-left: 3px;
+    vertical-align: middle;
+}
+
+.switchTitle{
+    color: #666666;
+    margin-left: 10px;
+    font-size: 16px;
+    vertical-align: middle;
+    display:inline;
+}
+
+.lever{
+    margin-top: 24px !important;
+}
+
+.iconFilter{
+    display: inline !important;
+
+}
+
+.iconFilter i{
+    display: inline-block;
+    margin-top: 17.5px;
+    font-size: 1.5em !important;
+}
+
+.labelFilter{
+    margin-top: 26px;
+}
+
+.filterBox{
+    height:65px;
+}
+
+[type="checkbox"].filled-in:checked+label:after {
+    border: 2px solid #00C853 !important;
+    background-color: #00C853 !important;
+}
+
+.filterBox > .switchTitle{
+    left: 70px;
+    position: absolute;
+}
