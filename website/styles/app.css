@@ -53,11 +53,15 @@
 }
 
 .switch label input[type=checkbox]:checked+.lever {
-    background-color: #00C853 !important;
+    background-color: #B8DB0E !important;
 }
 
 .switch label input[type=checkbox]:checked+.lever:after {
-    background-color: #008926 !important;
+    background-color: #A3C405 !important;
+}
+
+input[type=checkbox]:checked:not(:disabled) ~ .lever:active:after {
+    box-shadow: 0 1px 3px 1px rgba(0,0,0,0.4),0 0 0 15px rgba(163,196,5,0.1);
 }
 
 .switch {
@@ -101,8 +105,8 @@
 }
 
 [type="checkbox"].filled-in:checked+label:after {
-    border: 2px solid #00C853 !important;
-    background-color: #00C853 !important;
+    border: 2px solid #A3C405 !important;
+    background-color: #A3C405 !important;
 }
 
 .filterBox > .switchTitle{
@@ -124,7 +128,7 @@
 }
 
 #lifeLogButton:hover {
-    background-color: rgba(143, 211, 32,1);
+    background-color: #A3C405;
 }
 
 #lifelogLogo{
