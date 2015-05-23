@@ -7,60 +7,61 @@
     max-width: 60rem;
     min-width: 20rem;
     margin: 2.5rem auto;
-    height: 20rem;
 }
 
-.left-container {
-    float: left;
-    width: 40%;
-    height: 20rem;
+.top-container {
+    width: 100%;
+    height: 6rem;
 }
 
 .shop-logo-container {
-    height: 50%;
     padding: 1rem;
+    width: 50%;
+    float: left;
 }
 
 .shop-logo {
-    display: block;
-    max-width: 100%;
+    display: inline;
+    width: 100%;
     object-fit: contain;
+    max-height: 6rem;
 }
 
 .discount-container {
-    display: block;
-    height: 50%;
-    padding: 0.5rem 1rem;
+    display: inline;
+    height: 6rem;
+    float: right;
+    width: 50%;
+    padding: 0.75rem 3rem 0.75rem 1rem;
 }
 
 .price {
     display: block;
-    font-size: 3rem;
+    font-size: 1.5rem;
     text-align: center;
-    font-weight: ligher;
+    font-weight: lighter;
 }
 
 .discount {
     display: block;
-    font-size: 3rem;
+    font-size: 1.5rem;
     text-align: center;
     font-weight: bolder;
 }
 
-.right-container {
+.bottom-container {
     float: right;
     padding: 0 2rem;
-    width: 60%;
+    /*width: 60%;*/
     height: 20rem;
 }
 
 .badge {
     float: right;
     width: 3rem;
-    margin-right: -2rem;
-    margin-top: 1rem;
+    margin-right: -3.5rem;
     height: 2rem;
-    padding-top: 0.5rem;
+    z-index: 9000;
     padding-left: 0.5rem;
 }
 
@@ -107,7 +108,8 @@
     text-align: center;
     line-height: 3rem;
     font-size: 1.5rem;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    background-color: white;
+    color: black;
 }
 .action-item:hover {
     cursor: pointer;
@@ -116,7 +118,7 @@
 }
 
 .club {
-    background-color: black;
+    background-color: #607D8B;
     color: white;
 }
 
