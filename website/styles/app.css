@@ -1,0 +1,22 @@
+#navbar {
+    background-color: #00C853;
+
+}
+
+#profile {
+
+}
+
+#profilePic {
+    width: 100px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    z-index: 999;
+}
+
+#profileBG {
+    position: absolute;
+    width: 100%;
+    z-index: -999;
+}
+
