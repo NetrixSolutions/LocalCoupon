@@ -160,20 +160,21 @@
 
     <div class="card-stream">
         <div class="card discount-card"  ng-repeat="c in cards">
-            <div class="left-container">
+            <div class="top-container {{c.type}}">
                 <div class="shop-logo-container">
                     <img class="shop-logo" src="{{::c.logo_url}}">
                 </div>
-                <div class="discount-container club">
+                <div class="discount-container">
+                    <div class="badge">
+                        <img class="badge-icon" ng-if="c.badge_type == 'Twitter'" src="img/twitter.png" />
+                    </div>
                     <span class="price" ng-if="m.discount_text_top != ''">{{::c.discount_text_top}}</span>
                     <span class="discount" ng-if="c.discount_text_bottom != ''">{{::c.discount_text_bottom}}</span>
-                    <span class="discount" ng-if="c.discount_text != ''">{{::c.discount_text}}</span>
+                    <span class="discount only-attr" ng-if="c.discount_text != ''">{{::c.discount_text}}</span>
                 </div>
             </div>
-            <div class="right-container">
-                <div class="badge club">
-                    <img class="badge-icon" ng-if="c.badge_type == 'Twitter'" src="img/twitter.png" />
-                </div>
+            <div class="bottom-container">
+
                 <h1 class="title">{{::c.title}}</h1>
                 <h2 class="sub-title">{{::c.subtitle}}</h2>
                 <div class="description">
@@ -187,9 +188,9 @@
                     <span class="social-text">{{::s.discount_text}}</span>
                 </div>
                 <div class="actions">
-                    <div class="action-item waves-effect club mdi-maps-navigation"></div>
-                    <div class="action-item waves-effect club mdi-action-bookmark-outline"></div>
-                    <div class="action-item waves-effect club mdi-social-share"></div>
+                    <div class="action-item waves-effect mdi-maps-navigation"></div>
+                    <div class="action-item waves-effect mdi-action-bookmark-outline"></div>
+                    <div class="action-item waves-effect mdi-social-share"></div>
                 </div>
             </div>
         </div>
