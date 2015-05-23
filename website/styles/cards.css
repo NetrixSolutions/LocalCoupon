@@ -133,7 +133,6 @@
 }
 
 .social-discount {
-background-color: rgba(85,172,238,0.15);
     padding: 1rem;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
@@ -150,9 +149,23 @@ background-color: rgba(85,172,238,0.15);
 }
 
 .social-text {
-    color: rgb(85,172,238);
-    font-size: 1.2rem;
+    font-size: 1rem;
     line-height: 1.2rem;
+}
+
+.twitter {
+    color: rgb(85,172,238);
+    background-color: rgba(85,172,238,0.15);
+}
+
+.xing {
+ color: #026466;
+    background-color: rgba(2, 100, 102, 0.15);
+}
+
+.facebook {
+    color: #3b5998;
+    background-color: rgba(59, 85, 152, 0.15);
 }
 
 .challenge {
