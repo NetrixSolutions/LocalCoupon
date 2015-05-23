@@ -1,0 +1,530 @@
+<html ng-app="crowdpaths">
+<head>
+    <title>Local Coupon</title>
+
+    <meta charset="UTF-8">
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <link rel="icon" href="img/favicon/favicon.png" type="image/x-icon"/>
+
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="styles/materialize.min.css" media="screen,projection"/>
+
+    <!-- Readmore and JQuery -->
+    <script src="libs/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="http://viralpatel.net/blogs/demo/jquery/jquery.shorten.1.0.js"></script>
+
+    <!-- Angulars Material CSS now available via Google CDN; version 0.8 used here -->
+    <link rel="stylesheet" href="https://rawgit.com/angular/bower-material/master/angular-material.css">
+
+    <!-- Angular Material Dependencies -->
+    <script src="libs/angular.min.js"></script>
+    <script src="libs/angular-animate.min.js"></script>
+    <script src="libs/angular-aria.min.js"></script>
+
+    <!-- Angular Material Javascript now available via Google CDN; version 0.8 used here -->
+    <script src="libs/angular-material.js"></script>
+    <script src="libs/ng-text-truncate.js"></script>
+    <script src="libs/pace.min.js"></script>
+    <script src="libs/gitgraph.js"></script>
+
+    <!-- Include all your script files here -->
+    <script src="scripts/module.js"></script>
+    <script src="scripts/communicator.js"></script>
+    <script type="text/javascript" src="scripts/materialize.min.js"></script>
+    <script src="scripts/pathgraph.js"></script>
+
+    <!-- Add styles -->
+    <link rel="stylesheet" type="text/css" href="styles/gitgraph.css">
+    <link rel="stylesheet" type="text/css" href="styles/cards.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="styles/app.css">
+
+    <script>
+        $(window).scroll(function () {
+            var s = $(window).scrollTop(),
+                    d = $(document).height(),
+                    c = $(window).height();
+            scrollPercent = (s / (d - c)) * 100;
+            var position = scrollPercent;
+
+            $("#scroll-progress").css('width', position + '%');
+
+            // scroll indicator on canvas
+            var cards = $(".card");
+            cards.each(function (index) {
+                var card = cards[index];
+                var top = $(this).offset().top - 140;
+                var bottom = top + $(this).outerHeight();
+                if (s >= top && s <= bottom) {
+                    pathgraph.highlightNodeByCard(card);
+                }
+            });
+
+        });
+    </script>
+</head>
+<body ng-controller="MainController" layout="row">
+<div id="toolbar-container">
+
+    <nav id="toolbar">
+        <div class="progress">
+            <div class="determinate" id="scroll-progress" style="width: 0%"></div>
+        </div>
+        <div class="nav-wrapper">
+            <img id="toolbar-logo" src="/img/source-fork.png">
+            <a href="#" class="brand-logo left"><span style="font-weight: 400;">crowd</span><span
+                    style="font-weight: 300;">path</span></a>
+
+        </div>
+    </nav>
+
+</div>
+<div id="content">
+    <div class="mini-map">
+        <canvas id="gitGraph" class="graph-canvas"></canvas>
+    </div>
+    <div id="card-container-wrapper">
+        <div class="statistics-card card card-sizing" id="stats-card">
+            <img class="card-image" src="img/Android1.png"/>
+
+            <div class="card-content">
+                <div class="statistics-card-title">Android: From Zero to Hero</div>
+
+                <span class="statistics-item"><i class="statistics-icon mdi-device-access-time"></i> <span
+                        class="statistics-text">{{::durationTime}}</span></span>
+                <span class="statistics-item"><i class="statistics-icon mdi-action-account-child"></i><span
+                        class="statistics-text">{{::usersCompleted}}</span></span>
+                <span class="statistics-item"><i class="statistics-icon mdi-communication-call-split"></i><span
+                        class="statistics-text">{{::numberAlternativePaths}}</span></span>
+                <!--<span class="statistics-item"><i class="statistics-icon mdi-action-stars"></i><span-->
+                <!--class="statistics-text">{{::pathRating}}</span></span>-->
+                <span class="starrating-wrapper">
+                    <span class="starrating statistics-icon startpage-statistics-icon mdi-action-star-rate"
+                          ng-class="{'grey-text': c.rating <= '0'}"></span>
+                    <span class="starrating statistics-icon startpage-statistics-icon mdi-action-star-rate"
+                          ng-class="{'grey-text': c.rating <= '1'}"></span>
+                    <span class="starrating statistics-icon startpage-statistics-icon mdi-action-star-rate"
+                          ng-class="{'grey-text': c.rating <= '2'}"></span>
+                    <span class="starrating statistics-icon startpage-statistics-icon mdi-action-star-rate"
+                          ng-class="{'grey-text': c.rating <= '3'}"></span>
+                    <span class="starrating statistics-icon startpage-statistics-icon mdi-action-star-rate"
+                          ng-class="{'grey-text': c.rating <= '4'}"></span>
+                </span>
+
+                <div class="statistics-card-description">Lorem Ipsum is simply dummy text of the printing and
+                    typesetting industry.
+                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                    when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                </div>
+            </div>
+        </div>
+
+        <div class="card card-sizing" id="card-1">
+            <div class="card-header">
+                <div class="card-header-avatar">
+                    <img src="/img/coursera.png" class="material-avatar"></div>
+                <div class="card-header-info">
+                    <span class="card-header-title-big">Android Studio Set-Up - The first Steps</span>
+                    <span class="card-header-title card-location">Coursera - 2253 Completions</span>
+                </div>
+            </div>
+
+            <div class="card-content">
+                <img src="/img/android-studio.png" class="card-content-img"/>
+
+                <p class="card-content-text">There is a new IDE on the horizon for Android developers, Android Studio,
+                    and it's faster and easier to navigate than the current Eclipse-based Android Developer Tools
+                    plugin. Get a first look at Android Studio before its official release, here in this course with
+                    David Gassner. David shows how to install Android Studio on both Windows and Mac; create new
+                    projects and migrate existing ones from Eclipse; navigate and configure the user interface; and
+                    build and export Android apps.</p>
+            </div>
+            <div class="card-action">
+                <p>
+                    <input type="checkbox" id="card-action-complete-1" checked="checked"/>
+                    <label class="card-action-complete-label" for="card-action-complete-1">Completed</label>
+                </p>
+
+                <a target="_blank"
+                   href="http://www.lynda.com/Android-tutorials/Android-Studio-First-Look/143103-2.html?srchtrk=index:1%0Alinktypeid:2%0Aq:Android%0Apage:1%0As:relevance%0Asa:true%0Aproducttypeid:2"
+                   class="card-footer-button">Open Course</a>
+            </div>
+        </div>
+
+        <div class="card card-sizing" id="card-2">
+            <div class="card-header">
+                <div class="card-header-avatar">
+                    <img src="/img/vogella.png" class="material-avatar"></div>
+                <div class="card-header-info">
+                    <span class="card-header-title-big">Building your first App Hello World App </span>
+                    <span class="card-header-title card-location">Android Developers- 3645 Completions</span>
+                </div>
+            </div>
+
+            <div class="card-content">
+                <p class="card-content-text">This class teaches you how to build your first Android app. You’ll learn
+                    how to create an Android project and run a debuggable version of the app. You'll also learn some
+                    fundamentals of Android app design, including how to build a simple user interface and handle user
+                    input.</a></p>
+            </div>
+
+            <div class="card-action">
+                <p>
+                    <input type="checkbox" id="card-action-complete-2" checked="checked"/>
+                    <label class="card-action-complete-label" for="card-action-complete-2">Completed</label>
+                </p>
+                <a target="_blank"
+                   href="https://developer.android.com/training/basics/firstapp/index.html"
+                   class="card-footer-button">Open Tutorial</a>
+            </div>
+        </div>
+
+
+        <div class="card card-sizing" id="card-3">
+            <div class="card-header">
+                <div class="card-header-avatar">
+                    <img src="/img/youtube-play.png" class="material-avatar"></div>
+                <div class="card-header-info">
+                    <span class="card-header-title-big">Android App Lifecycle and Navigation</span>
+                    <span class="card-header-title card-location">Youtube - 3630 Completions</span>
+                    <!--<span class="card-header-title">This is a cool card</span>
+                    <span class="card-header-title card-location">veryyy nice</span>-->
+                </div>
+            </div>
+
+            <div class="card-content">
+
+                <div class="video-container no-controls">
+                    <iframe width="853" height="480" src="https://www.youtube.com/embed/XwGHJJYBs0Q?rel=0;autohide=1"
+                            frameborder="0" allowfullscreen></iframe>
+                </div>
+                <p style="margin-top: 10px" class="card-content-text">An app is useless if people can't find their way
+                    around it. Android introduced big navigation-support changes in 3.0 and 4.0. The Action Bar offers a
+                    convenient control for Up navigation, the Back key's behavior became more consistent within tasks,
+                    and the Recent Tasks UI got an overhaul.</p>
+            </div>
+
+            <div class="card-action">
+                <p>
+                    <input type="checkbox" id="card-action-complete-3" checked="checked"/>
+                    <label class="card-action-complete-label" for="card-action-complete-3">Completed</label>
+                </p>
+
+            </div>
+        </div>
+
+        <div class="card card-sizing" id="card-4">
+            <div class="card-header">
+                <div class="card-header-avatar">
+                    <img src="/img/udacity.png" class="material-avatar"></div>
+                <div class="card-header-info">
+                    <span class="card-header-title-big">Rich and Responsive Layouts (Lesson 5)</span>
+                    <span class="card-header-title card-location">Udacity - 3981 Completions</span>
+                </div>
+            </div>
+
+            <div class="card-content">
+                <img src="/img/responsive-apps.jpg" class="card-content-img"/>
+
+                <p class="card-content-text">Create layouts that are specific to different device configurations or
+                    screen resolutions, and learn how to implement custom views. Both responsive and adaptive design
+                    attempt to optimize the user experience across different devices, adjusting for different viewport
+                    sizes, and so on. Responsive design works on the principle of flexibility. The idea is that a single
+                    fluid design based upon media queries, and responsive images can be used to create a user experience
+                    that flexes and changes based on a multitude of factors. </p>
+            </div>
+            <div class="card-action">
+                <p>
+                    <input type="checkbox" id="card-action-complete-4" checked="checked"/>
+                    <label class="card-action-complete-label" for="card-action-complete-4">Completed</label>
+                </p>
+                <a target="_blank" href="https://www.udacity.com/course/viewer#!/c-ud853/l-1623168625/m-1667758568"
+                   class="card-footer-button">Open Course</a>
+            </div>
+        </div>
+
+        <ul class="collapsible popout card-sizing" data-collapsible="accordion">
+            <li>
+                <div class="collapsible-header active"><img class="mdi-image-filter-drama alternate-path-header-icon"
+                                                            src="img/materialdesign.png"/>Excursion: Materialize
+                </div>
+                <div class="collapsible-body">
+                    <p>Learn more about the new design language of Android: Material Design<a target="_blank" href=""
+                                                                                              id="showMaterialPathButton"
+                                                                                              ng-click="showContent('material', 'showMaterialPathButton')"
+                                                                                              class="path-switch-button">SHOW
+                        CONTENT</a></p>
+
+                </div>
+            </li>
+        </ul>
+
+        <div class="card card-sizing path-material hidden" id="card-5">
+            <div class="card-header">
+                <div class="card-header-avatar">
+                    <img src="/img/youtube-play.png" class="material-avatar material-avatar-material"></div>
+                <div class="card-header-info">
+                    <span class="card-header-title-big">Material Design - Introduction</span>
+                    <span class="card-header-title card-location">Youtube - 3630 Completions</span>
+                    <!--<span class="card-header-title">This is a cool card</span>
+                    <span class="card-header-title card-location">veryyy nice</span>-->
+                </div>
+            </div>
+
+            <div class="card-content">
+
+                <div class="video-container no-controls">
+                    <iframe width="853" height="480" src="//www.youtube.com/embed/Q8TXgCzxEnw?rel=0;autohide=1"
+                            frameborder="0" allowfullscreen></iframe>
+                </div>
+                <p style="margin-top: 10px" class="card-content-text">A material metaphor is the unifying theory of a
+                    rationalized space and a system of motion. The material is grounded in tactile reality, inspired by
+                    the study of paper and ink, yet technologically advanced and open to imagination and magic. More
+                    Information on the <a href="http://www.google.com/design/spec/material-design/introduction.html">Material
+                        Design Website</a></p>
+            </div>
+
+            <div class="card-action">
+                <p>
+                    <input type="checkbox" id="card-action-complete-5" checked="checked"/>
+                    <label class="card-action-complete-label" for="card-action-complete-5">Completed</label>
+                </p>
+
+            </div>
+        </div>
+
+        <div class="card card-sizing path-material hidden" id="card-6">
+            <div class="card-header">
+                <div class="card-header-avatar">
+                    <img src="/img/android.png" class="material-avatar material-avatar-material"></div>
+                <div class="card-header-info">
+                    <span class="card-header-title-big">Implementing Material Design in Your Android app</span>
+                    <span class="card-header-title card-location">Android Developers - 2918 Completions</span>
+                    <!--<span class="card-header-title">This is a cool card</span>
+                    <span class="card-header-title card-location">veryyy nice</span>-->
+                </div>
+            </div>
+
+            <div class="card-content">
+                <img src="/img/material-design.jpg" class="card-content-img"/>
+
+                <p class="card-content-text">Material design is a comprehensive approach to visual, interaction and
+                    motion design for the multi-screen world. Android 5.0 Lollipop and the updated support libraries
+                    help you to create material UIs. Here’s a rundown of some of the major elements of material design
+                    and the APIs and widgets that you can use to implement them in your app.</a></p>
+            </div>
+
+            <div class="card-action">
+                <p>
+                    <input type="checkbox" id="card-action-complete-6" checked="checked"/>
+                    <label class="card-action-complete-label" for="card-action-complete-6">Completed</label>
+                </p>
+                <a target="_blank"
+                   href="http://android-developers.blogspot.de/2014/10/implementing-material-design-in-your.html"
+                   class="card-footer-button">Open Blog</a>
+            </div>
+        </div>
+
+
+        <div class="card card-sizing" id="card-8">
+            <div class="card-header">
+                <div class="card-header-avatar">
+                    <img src="/img/vogella.png" class="material-avatar"></div>
+                <div class="card-header-info">
+                    <span class="card-header-title-big">Debugging Android applications</span>
+                    <span class="card-header-title card-location">Vogella- 2918 Completions</span>
+                </div>
+            </div>
+
+            <div class="card-content">
+                <p class="card-content-text">This tutorial describes how to debug Android applications. If you develop
+                    Android applications you can debug them via Eclipse. To enable debugging an a real Android device
+                    you need to add the android:debuggable="true" flag to the application segment in your
+                    AndroidManifest.xml file. The ADT tooling sets this flag automatically for debug builds based on the
+                    constant DEBUG of the BuildConfig class. This class is automatically updated by the ADT.</a></p>
+            </div>
+
+            <div class="card-action">
+                <p>
+                    <input type="checkbox" id="card-action-complete-8" checked="checked"/>
+                    <label class="card-action-complete-label" for="card-action-complete-8">Completed</label>
+                </p>
+                <a target="_blank"
+                   href="http://android-developers.blogspot.de/2014/10/implementing-material-design-in-your.html"
+                   class="card-footer-button">Open Blog</a>
+            </div>
+        </div>
+
+        <div class="card card-sizing" id="card-7">
+            <div class="card-header">
+                <div class="card-header-avatar">
+                    <img src="/img/presentation.png" class="material-avatar"></div>
+                <div class="card-header-info">
+                    <span class="card-header-title-big">Android Testing by Jake Wharton</span>
+                    <span class="card-header-title card-location">Speaker Deck - 2587 Completions</span>
+                </div>
+            </div>
+
+            <div class="card-content">
+                <script async class="speakerdeck-embed" data-id="8389fd60a0e50130aa8066f78f5cbceb"
+                        data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+                <p style="margin-top: 10px" class="card-content-text">Designing your Android app for testability. How
+                    unit tests, instrumentation tests, and libraries like Dagger improve confidence in your app.</p>
+            </div>
+            <div class="card-action">
+                <p>
+                    <input type="checkbox" id="card-action-complete-7" checked="checked"/>
+                    <label class="card-action-complete-label" for="card-action-complete-7">Completed</label>
+                </p>
+
+            </div>
+        </div>
+
+
+        <ul class="collapsible card-sizing" data-collapsible="accordion">
+            <li>
+                <div class="collapsible-header active"><i class="mdi-action-list"></i>Build: Productivity App
+                </div>
+                <div class="collapsible-body"><p>Your first app will help you with your productivity: a note
+                    app.
+                    <a target="_blank" href=""
+                       id="showProductivityButton"
+                       ng-click="showContent('productivity', 'showProductivityButton')"
+                       class="path-switch-button">SHOW CONTENT</a>
+                </p></div>
+            </li>
+            <li>
+                <div class="collapsible-header"><i class="mdi-av-games"></i>Build: Gaming App</div>
+                <div class="collapsible-body"><p>Your first app will be a small, nifty game!
+                    <a target="_blank" href=""
+                       id="showGamingButton"
+                       ng-click="showContent('gaming', 'showGamingButton')"
+                       class="path-switch-button">SHOW CONTENT</a></p></div>
+            </li>
+        </ul>
+
+
+            <div class="card card-sizing path-gaming hidden" id="card-9">
+            <div class="card-header">
+                <div class="card-header-avatar">
+                    <img src="/img/file-pdf.png" class="material-avatar material-avatar-games"></div>
+                <div class="card-header-info">
+                    <span class="card-header-title-big">Building the Game (Chapter 9)</span>
+                    <span class="card-header-title card-location">PDF-Document - 1253 Completions</span>
+                </div>
+            </div>
+
+            <div class="card-content">
+                <img src="/img/game-beginner.jpg" class="card-content-img"/>
+
+                <p class="card-content-text">Android Game Development Made Easy. If you've always wanted to make Android
+                    games but didn't know where to start, this book is for you. Whether you are an absolute beginner
+                    with no programming experience or an experienced Java developer wanting to get started with game
+                    development, this comprehensive book will help you accomplish your goals and teach you how to build
+                    your own games from scratch-no game engines needed. In this beginner-friendly guide, you will find
+                    step-by-step approaches designed to help you learn one fundamental concept at a time </p>
+            </div>
+            <div class="card-action">
+                <p>
+                    <input type="checkbox" id="card-action-complete-9" checked="checked"/>
+                    <label class="card-action-complete-label" for="card-action-complete-9">Completed</label>
+                </p>
+                <a target="_blank"
+                   href="http://www.pdfiles.com/pdf/files/English/Android/Learning_Android_Game_Programming.pdf"
+                   class="card-footer-button">Open PDF</a>
+            </div>
+        </div>
+
+        <div class="card card-sizing path-gaming hidden" id="card-10">
+            <div class="card-header">
+                <div class="card-header-avatar">
+                    <img src="/img/presentation.png" class="material-avatar material-avatar-games"></div>
+                <div class="card-header-info">
+                    <span class="card-header-title-big">Level up your game with Play Game Services</span>
+                    <span class="card-header-title card-location">Slideshare - 1084 Completions</span>
+                </div>
+            </div>
+
+            <div class="card-content">
+                <iframe style="height: 358px;" class="card-content-img"
+                        src="//www.slideshare.net/slideshow/embed_code/key/2ZX4wSVBGqP2fX" width="424" height="355"
+                        frameborder="0" marginwidth="0" marginheight="0" scrolling="no"
+                        style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;"
+                        allowfullscreen></iframe>
+                <p class="card-content-text">Make your games social with Google Play game services. Add achievements,
+                    leaderboards, real-time multiplayer, and other popular features using the Google Play game services
+                    SDK. Let players sign in using their Google+ identities and share their gaming experience with
+                    friends. The Play Game services SDK provides cross-platform Game services that lets you easily
+                    integrate popular gaming features such as achievements, leaderboards, Saved Games, and real-time
+                    multiplayer in your tablet and mobile games. This training will guide you to install a sample game
+                    application for Android and quickly get started to create your own Android game. The Number
+                    Challenge sample app demonstrates how you can integrate achievements and leaderboards into your
+                    game.</p>
+            </div>
+            <div class="card-action">
+                <p>
+                    <input type="checkbox" id="card-action-complete-10" checked="checked"/>
+                    <label class="card-action-complete-label" for="card-action-complete-10">Completed</label>
+                </p>
+            </div>
+        </div>
+
+        <div class="card card-sizing" id="card-11">
+            <div class="card-header">
+                <div class="card-header-avatar">
+                    <img src="/img/google-play.png" class="material-avatar"></div>
+                <div class="card-header-info">
+                    <span class="card-header-title-big">How to get rich with crap - release your App</span>
+                    <span class="card-header-title card-location">Playstore - 4122 Completions</span>
+                </div>
+            </div>
+
+            <div class="card-content">
+                <img src="/img/playstore.png" class="card-content-img"/>
+                <p class="card-content-text" style="margin-top: 5px;">Once the app is built, it is crucial that it is marketed well. Marketing
+                    the app however should have a tasteful budget allocated to it, because a lot depends on it. Though
+                    there are a lot of do’s and don’t that one need to remember, a good app will scale well if it has
+                    made the right impact on tech blogs, social media and, of course, the press. Though all this may
+                    sound daunting, this article by Smashing Magazine has got it sorted for you.</a></p>
+            </div>
+
+            <div class="card-action">
+                <p>
+                    <input type="checkbox" id="card-action-complete-11" checked="checked"/>
+                    <label class="card-action-complete-label" for="card-action-complete-11">Completed</label>
+                </p>
+                <a target="_blank"
+                   href="http://www.appvirality.com/blog/plan-mobile-app-budget-6-easy-steps/"
+                   class="card-footer-button">Open Blog</a>
+            </div>
+        </div>
+
+    </div>
+
+        <div class="fixed-action-btn" style="bottom: 32px; right: 32px;">
+            <a class="btn-floating btn-large orange accent-4">
+                <i class="large mdi-content-add"></i>
+            </a>
+            <ul>
+                <li><a class="btn-floating red"><i class="large mdi-editor-insert-chart"></i></a></li>
+                <li><a class="btn-floating yellow darken-1"><i class="large mdi-editor-format-quote"></i></a></li>
+                <li><a class="btn-floating green"><i class="large mdi-editor-publish"></i></a></li>
+                <li><a class="btn-floating blue"><i class="large mdi-editor-attach-file"></i></a></li>
+            </ul>
+        </div>
+
+
+        <script>
+            $(document).ready(function () {
+                pathgraph.init();
+            });
+        </script>
+    </div>
+</body>
+</html>
+
+<!--<script type="text/javascript">$(document).ready(function () {-->
+<!--$(".card-content-text").shorten({"showChars": 380});-->
+<!--});</script>-->
