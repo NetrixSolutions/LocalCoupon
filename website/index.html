@@ -1,6 +1,6 @@
-<html>
+<html ng-app="contextDiscount">
 <head>
-    <title>Local Coupon</title>
+    <title>Context Discount</title>
 
     <meta charset="UTF-8">
 
@@ -20,17 +20,17 @@
 
     <script type="text/javascript" src="scripts/materialize.min.js"></script>
 
-    <!-- Angular Material Dependencies
+    <!-- Angular Material Dependencies -->
     <script src="libs/angular.min.js"></script>
     <script src="libs/angular-animate.min.js"></script>
     <script src="libs/angular-aria.min.js"></script>
 
     <script src="libs/angular-material.js"></script>
     <script src="libs/ng-text-truncate.js"></script>
-    <script src="libs/pace.min.js"></script>-->
+    <script src="libs/pace.min.js"></script>
 
-    <!-- Include all your script files here
-    <script src="scripts/module.js"></script>-->
+    <!-- Include all your script files here -->
+    <script src="scripts/module.js"></script>
 
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/js/materialize.min.js"></script>-->
 
@@ -65,7 +65,7 @@
     </script>
 
 </head>
-<body>
+<body ng-controller="MainController">
     <nav id="navbar">
         <div class="nav-wrapper">
             <a href="#!" class="center brand-logo">LocalDiscounts</a>
@@ -159,28 +159,32 @@
     </nav>
 
     <div class="card-stream">
-        <div class="card discount-card">
+        <div class="card discount-card"  ng-repeat="c in cards">
             <div class="left-container">
                 <div class="shop-logo-container">
-                    <img class="shop-logo" src="img/rewe_logo.jpeg">
+                    <img class="shop-logo" src="{{::c.logo_url}}">
                 </div>
                 <div class="discount-container club">
-                    <span class="price">1,42€</span>
-                    <span class="discount">-23%</span>
+                    <span class="price" ng-if="m.discount_text_top != ''">{{::c.discount_text_top}}</span>
+                    <span class="discount" ng-if="c.discount_text_bottom != ''">{{::c.discount_text_bottom}}</span>
+                    <span class="discount" ng-if="c.discount_text != ''">{{::c.discount_text}}</span>
                 </div>
             </div>
             <div class="right-container">
                 <div class="badge club">
-                    <img class="badge-icon" src="img/twitter.png" />
+                    <img class="badge-icon" ng-if="c.badge_type == 'Twitter'" src="img/twitter.png" />
                 </div>
-                <h1 class="title">JA! Fitness Salat</h1>
-                <h2 class="sub-title">500m away, 3 days valid</h2>
+                <h1 class="title">{{::c.title}}</h1>
+                <h2 class="sub-title">{{::c.subtitle}}</h2>
                 <div class="description">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry ...
+                    {{::c.description}}
                 </div>
-                <div class="social-discount waves-effect">
-                    <img class="social-icon" src="img/twitter.png" />
-                    <span class="social-text">Earn an additional 5% by tweeting</span>
+                <div class="social-discount waves-effect" ng-class="s.type" ng-repeat="s in c.social_discount">
+                    <div class="challenge-bar" ng-if="s.type == Lifelog">
+                        <div class="challenge-fill" ng-style="{width: {{::s.progress}} + '%'}"></div>
+                    </div>
+                    <img class="social-icon" ng-if="s.type == 'Twitter'" src="img/twitter.png" />
+                    <span class="social-text">{{::s.discount_text}}</span>
                 </div>
                 <div class="actions">
                     <div class="action-item waves-effect club mdi-maps-navigation"></div>
@@ -189,187 +193,6 @@
                 </div>
             </div>
         </div>
-        <div class="card discount-card">
-            <div class="left-container">
-                <div class="shop-logo-container">
-                    <img class="shop-logo" src="img/rewe_logo.jpeg">
-                </div>
-                <div class="discount-container club">
-                    <span class="price">1,42€</span>
-                    <span class="discount">-23%</span>
-                </div>
-            </div>
-            <div class="right-container">
-                <div class="badge club">
-                    <img class="badge-icon" src="img/twitter.png" />
-                </div>
-                <h1 class="title">JA! Fitness Salat</h1>
-                <h2 class="sub-title">500m away, 3 days valid</h2>
-                <div class="description">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry ...
-                </div>
-                <div class="social-discount waves-effect">
-                    <img class="social-icon" src="img/twitter.png" />
-                    <span class="social-text">Earn an additional 5% by tweeting</span>
-                </div>
-                <div class="actions">
-                    <div class="action-item waves-effect club mdi-maps-navigation"></div>
-                    <div class="action-item waves-effect club mdi-action-bookmark-outline"></div>
-                    <div class="action-item waves-effect club mdi-social-share"></div>
-                </div>
-            </div>
-        </div>
-        <div class="card discount-card">
-            <div class="left-container">
-                <div class="shop-logo-container">
-                    <img class="shop-logo" src="img/rewe_logo.jpeg">
-                </div>
-                <div class="discount-container club">
-                    <span class="price">1,42€</span>
-                    <span class="discount">-23%</span>
-                </div>
-            </div>
-            <div class="right-container">
-                <div class="badge club">
-                    <img class="badge-icon" src="img/twitter.png" />
-                </div>
-                <h1 class="title">JA! Fitness Salat</h1>
-                <h2 class="sub-title">500m away, 3 days valid</h2>
-                <div class="description">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry ...
-                </div>
-                <div class="social-discount waves-effect">
-                    <img class="social-icon" src="img/twitter.png" />
-                    <span class="social-text">Earn an additional 5% by tweeting</span>
-                </div>
-                <div class="actions">
-                    <div class="action-item waves-effect club mdi-maps-navigation"></div>
-                    <div class="action-item waves-effect club mdi-action-bookmark-outline"></div>
-                    <div class="action-item waves-effect club mdi-social-share"></div>
-                </div>
-            </div>
-        </div>
-        <div class="card discount-card">
-            <div class="left-container">
-                <div class="shop-logo-container">
-                    <img class="shop-logo" src="img/rewe_logo.jpeg">
-                </div>
-                <div class="discount-container club">
-                    <span class="price">1,42€</span>
-                    <span class="discount">-23%</span>
-                </div>
-            </div>
-            <div class="right-container">
-                <div class="badge club">
-                    <img class="badge-icon" src="img/twitter.png" />
-                </div>
-                <h1 class="title">JA! Fitness Salat</h1>
-                <h2 class="sub-title">500m away, 3 days valid</h2>
-                <div class="description">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry ...
-                </div>
-                <div class="social-discount waves-effect">
-                    <img class="social-icon" src="img/twitter.png" />
-                    <span class="social-text">Earn an additional 5% by tweeting</span>
-                </div>
-                <div class="actions">
-                    <div class="action-item waves-effect club mdi-maps-navigation"></div>
-                    <div class="action-item waves-effect club mdi-action-bookmark-outline"></div>
-                    <div class="action-item waves-effect club mdi-social-share"></div>
-                </div>
-            </div>
-        </div>
-        <div class="card discount-card">
-            <div class="left-container">
-                <div class="shop-logo-container">
-                    <img class="shop-logo" src="img/rewe_logo.jpeg">
-                </div>
-                <div class="discount-container club">
-                    <span class="price">1,42€</span>
-                    <span class="discount">-23%</span>
-                </div>
-            </div>
-            <div class="right-container">
-                <div class="badge club">
-                    <img class="badge-icon" src="img/twitter.png" />
-                </div>
-                <h1 class="title">JA! Fitness Salat</h1>
-                <h2 class="sub-title">500m away, 3 days valid</h2>
-                <div class="description">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry ...
-                </div>
-                <div class="social-discount waves-effect">
-                    <img class="social-icon" src="img/twitter.png" />
-                    <span class="social-text">Earn an additional 5% by tweeting</span>
-                </div>
-                <div class="actions">
-                    <div class="action-item waves-effect club mdi-maps-navigation"></div>
-                    <div class="action-item waves-effect club mdi-action-bookmark-outline"></div>
-                    <div class="action-item waves-effect club mdi-social-share"></div>
-                </div>
-            </div>
-        </div>
-        <div class="card discount-card">
-            <div class="left-container">
-                <div class="shop-logo-container">
-                    <img class="shop-logo" src="img/rewe_logo.jpeg">
-                </div>
-                <div class="discount-container club">
-                    <span class="price">1,42€</span>
-                    <span class="discount">-23%</span>
-                </div>
-            </div>
-            <div class="right-container">
-                <div class="badge club">
-                    <img class="badge-icon" src="img/twitter.png" />
-                </div>
-                <h1 class="title">JA! Fitness Salat</h1>
-                <h2 class="sub-title">500m away, 3 days valid</h2>
-                <div class="description">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry ...
-                </div>
-                <div class="social-discount waves-effect">
-                    <img class="social-icon" src="img/twitter.png" />
-                    <span class="social-text">Earn an additional 5% by tweeting</span>
-                </div>
-                <div class="actions">
-                    <div class="action-item waves-effect club mdi-maps-navigation"></div>
-                    <div class="action-item waves-effect club mdi-action-bookmark-outline"></div>
-                    <div class="action-item waves-effect club mdi-social-share"></div>
-                </div>
-            </div>
-        </div>
-        <div class="card discount-card">
-            <div class="left-container">
-                <div class="shop-logo-container">
-                    <img class="shop-logo" src="img/rewe_logo.jpeg">
-                </div>
-                <div class="discount-container club">
-                    <span class="price">1,42€</span>
-                    <span class="discount">-23%</span>
-                </div>
-            </div>
-            <div class="right-container">
-                <div class="badge club">
-                    <img class="badge-icon" src="img/twitter.png" />
-                </div>
-                <h1 class="title">JA! Fitness Salat</h1>
-                <h2 class="sub-title">500m away, 3 days valid</h2>
-                <div class="description">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry ...
-                </div>
-                <div class="social-discount waves-effect">
-                    <img class="social-icon" src="img/twitter.png" />
-                    <span class="social-text">Earn an additional 5% by tweeting</span>
-                </div>
-                <div class="actions">
-                    <div class="action-item waves-effect club mdi-maps-navigation"></div>
-                    <div class="action-item waves-effect club mdi-action-bookmark-outline"></div>
-                    <div class="action-item waves-effect club mdi-social-share"></div>
-                </div>
-            </div>
-        </div>
-
     </div>
 
 </body>

@@ -1,4 +1,4 @@
-angular.module('praxismarket', ['ngMaterial', 'ngTextTruncate'])
+angular.module('contextDiscount', ['ngMaterial', 'ngTextTruncate'])
     .factory('dataService', function () {
         //var streamData = {};
         var dialog;
@@ -12,13 +12,7 @@ angular.module('praxismarket', ['ngMaterial', 'ngTextTruncate'])
             //},
             //resetStreamData: function () {
             //    streamData = {};
-            //},
-            setCompanies: function (newCompanies) {
-                companies = newCompanies;
-            },
-            getCompanies: function () {
-                return companies;
-            },
+            //}
             getDialog: function () {
                 return dialog;
             },
@@ -31,35 +25,8 @@ angular.module('praxismarket', ['ngMaterial', 'ngTextTruncate'])
         // ==============================
         // ===== General
         // ==============================
-        $scope.appName = "Praxis Market";
+        $scope.appName = "Context Discount";
 
-        var offerCallback = function (offers, companies) {
-            //dataService.setStreamData(offers);
-            if(offers.length !== 10) {
-                $scope.moreOffersAvailable = false;
-            } else {
-                $scope.moreOffersAvailable = true;
-            }
-
-            $scope.joboffers = offers;
-            $scope.companies = companies;
-            $scope.$apply();
-            angular.element(".card-body-text").shorten({"showChars": 440});
-        };
-
-        var pagingCallback = function (offers, companies) {
-            //dataService.setStreamData(offers);
-            if(offers.length < 10) {
-                $scope.moreOffersAvailable = false;
-            } else {
-                $scope.moreOffersAvailable = true;
-            }
-
-            $scope.joboffers = $scope.joboffers.concat(offers);
-            angular.extend($scope.companies,companies);
-            $scope.$apply();
-            angular.element(".card-body-text").shorten({"showChars": 440});
-        }
         // ==============================
         // ===== Side Nav
         // ==============================
@@ -84,7 +51,7 @@ angular.module('praxismarket', ['ngMaterial', 'ngTextTruncate'])
                     $log.debug("close LEFT is done");
                 });
         };
-        var offers = [];
+
         $scope.typeSelected = function (offer) {
             offers = [];
             $scope.selectedTypeName = offer.name;
@@ -104,113 +71,175 @@ angular.module('praxismarket', ['ngMaterial', 'ngTextTruncate'])
             //dataService.setStreamData(offers);
         };
 
-        communicator.getAllOfferTypes(function (offerTypes) {
-            $scope.offerTypes = offerTypes;
-            $scope.$apply();
-        });
-
-        // ==============================
-        // ===== Wish List
-        // ==============================
-        $scope.loadWishList = function () {
-            communicator.getNotePad(offerCallback);
-        };
-
-        $scope.toggleNote = function(offer) {
-            console.log("toggle note: " + offer.onNotepad);
-            if(offer.onNotepad === true) {
-                communicator.removeOfferFromNotepad(offer, function() {
-                    communicator.getNotePad(offerCallback)
-                });
-                offer.onNotepad = false;
-            } else {
-                communicator.addOfferToNotepad(offer);
-                offer.onNotepad = true;
-            }
-        }
-
-        // ==============================
-        // ===== Cards
-        // ==============================
-        $scope.loadMoreOffers = function () {
-            var currentCardCount = $window.document.getElementsByClassName("card").length;
-            var moreOffers = communicator.getMoreOffersByType($scope.selectedType, currentCardCount, pagingCallback);
-            //dataService.setStreamData(dataService.getStreamData().concat(moreOffers));
-        }
-
-
-        //var offers = [];
-        var limit = undefined;
-        if (!$mdMedia('gt-md')) {
-            limit = 10;
-        }
-        communicator.getOffersByType('thesis', undefined, offerCallback);
-        $scope.selectedTypeName = 'Abschlussarbeit';
-        $scope.selectedType = 'thesis';
-        $scope.moreOffersAvailable = false;
-
-
-        //$scope.joboffers = offers;
-        //dataService.setStreamData(offers);
-
-        $scope.showCompanyDetails = function (ev, companyId) {
-            ev.stopPropagation();
-            //var companies = [{
-            //    'name': 'FOOBAR COMPANY',
-            //    'description': 'Lorem Ipsum Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum',
-            //    'website': 'http://drop.social',
-            //    'street': 'Philippstr. 3',
-            //    'city': 'Karlsruhe',
-            //    'zipcode': '12345',
-            //    'numberOfEmployees': '9',
-            //    'country': 'Germany',
-            //    'contact': {
-            //        'firstName': 'Clark',
-            //        'secondName': 'Gable',
-            //        'phone': '+49 12345',
-            //        'mail': 'foo@bar.com'
-            //    }
-            //}];
-            var company = $scope.companies[companyId];
-            console.log(company);
-
-            $mdDialog.show({
-                controller: DialogController,
-                templateUrl: 'companyDetails.template.html',
-                targetEvent: ev,
-                resolve: {
-                    company: function () {
-                        return company;
-                    }
+        $scope.cards = [
+            {
+                'logo_url': './img/rewe-logo.jpg',
+                'discount_text_top': '1,42€',
+                'discount_text_bottom': '-15%',
+                'discount_text': '',
+                'title': 'JA! 1kg Meat',
+                subtitle: '300 m away, 5 days valid',
+                'description': 'Pork, Beef \<br/\> Origin: Germany \<br/\> Best meat:PorkandBeefmixedfor roasting orbarbecuingwith the wholefamily',
+                'social_discount': [],
+                'badge_type': '',
+                'position': {
+                    'lat': 0,
+                    'lng': 0,
+                    'maps_url': ''
                 }
-            })
-                .then(function (answer) {
-                    $scope.alert = 'You said the information was "' + answer + '".';
-                }, function () {
-                    $scope.alert = 'You cancelled the dialog.';
-                });
-        };
+                ,
+                'bookmarked': 'false'
+            },
 
+            {
+                'logo_url': './img/Kaufland.png',
+                'discount_text_top': '1,98€',
+                'discount_text_bottom': '-33%',
+                'discount_text': '',
+                'title': '300g Jona Apples',
+                subtitle: '200m away, 6 days valid',
+                'description': 'Jona Apples from Spain. <br/> Package of 6 apples.',
+                'social_discount': [],
+                'badge_type': '',
+                'position': {
+                    'lat': 0,
+                    'lng': 0,
+                    'maps_url': ''
+                },
+                'bookmarked': 'true'
+            },
 
-        function DialogController($scope, $mdDialog, dataService, company) {
-            $scope.company = company;
-            dataService.setDialog($mdDialog);
+            {
+                'logo_url': './img/couch-kapitaen.jpg',
+                'discount_text_top': '',
+                'discount_text_bottom': '',
+                'discount_text': '2,50€',
+                'title': 'Jacky Cola...',
+                'subtitle': '600m away',
+                'description': '... for 2,50€. All night long! #ContextDiscount',
+                'social_discount': [
+                    {
+                        'type': 'Twitter',
+                        'discount_text': '1 free for retweeting',
+                        'progress': ''
+                    }
+                ],
+                'badge_type': 'twitter',
+                'position': {
+                    'lat': 0,
+                    'lng': 0,
+                    'maps_url': ''
+                },
+                'bookmarked': 'false'
+            },
 
-            $scope.stopPropagation = function (event) {
-                event.stopPropagation();
-            };
+            {
+                'logo_url': './img/the-old-firehouse-logo.gif',
+                'discount_text_top': '',
+                'discount_text_bottom': '',
+                'discount_text': '4,50€',
+                'title': 'Cocktail Happy Hour',
+                'description': 'Jumbo cocktails for 4,50€',
+                'social_discount': [
+                    {
+                        'type': 'facebook',
+                        'discount_text': '1 free for recommend',
+                        'progress': ''
+                    }
+                ],
+                'badge_type': '',
+                'position': {
+                    'lat': 0,
+                    'lng': 0,
+                    'maps_url': ''
+                },
+                'bookmarked': 'false'
+            },
 
-        }
+            {
+                'logo_url': './img/akademie.png',
+                'discount_text_top': '',
+                'discount_text_bottom': '',
+                'discount_text': '50%',
+                'title': 'Leader Training',
+                subtitle: '300m away, next training',
+                'description': 'Get 50% off for the next training and become a leader!',
+                'social_discount': [
+                    {
+                        'type': 'Xing',
+                        'discount_text': 'Get 25% by subscribing',
+                        'progress': ''
+                    },
+                    {
+                        'type': 'twitter',
+                        'discount_text': 'Get 25% for tweeting',
+                        'progress': ''
+                    }
 
-        $scope.closeDialog = function () {
-            var dialog = dataService.getDialog();
-            if (dialog) {
-                dataService.setDialog(undefined);
-                dialog.hide();
+                ],
+                'badge_type': '',
+                'position': {
+                    'lat': 0,
+                    'lng': 0,
+                    'maps_url': ''
+                },
+                'bookmarked': 'true'
+            },
+
+            {
+                'logo_url': './Fitness_First_Logo.png',
+                'discount_text_top': '',
+                'discount_text_bottom': '',
+                'discount_text': 'Free',
+                'title': 'Milk Shake',
+                subtitle: '1,5km',
+                'description': 'Power hard today and burn 500 kcal.Regain your energy by one of our freshmilk shakes!',
+                'social_discount': [
+                    {
+                        'type': 'lifelog',
+                        'discount_text': 'Free Shake for 500 kcal',
+                        'progress': '27'
+                    }
+                ],
+                'badge_type': '',
+                'position': {
+                    'lat': 0,
+                    'lng': 0,
+                    'maps_url': ''
+                }
+                ,
+                'bookmarked': 'true'
+            },
+
+            {
+                'logo_url': './Dean_and_David.jpg',
+                'discount_text_top': '2,50€',
+                'discount_text_bottom': '-10%',
+                'discount_text': '',
+                'title': 'Caesar Fitness Salad',
+                subtitle: '500m away, 3 days valid',
+                'description': 'Get a reward for your activity and grab a Caesar Fitness Salad after making 2.000 steps on one day!',
+                'social_discount': [
+                    {
+                        'type': 'lifelog',
+                        'discount_text': 'Additional 5% for 2000',
+                        'progress': '69'
+                    }
+                ],
+                'badge_type': '',
+                'position': {
+                    'lat': 0,
+                    'lng': 0,
+                    'maps_url': ''
+                }
+                ,
+                'bookmarked': 'false'
             }
-        }
+        ]
+
     })
-    .config(function ($mdThemingProvider) {
+    .
+    config(function ($mdThemingProvider) {
         $mdThemingProvider.theme('default')
             .primaryPalette('indigo')
             .accentPalette('orange');
