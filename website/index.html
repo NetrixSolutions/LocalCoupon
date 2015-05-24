@@ -131,7 +131,7 @@
             var xmlhttp = new XMLHttpRequest();
 
             // tunnel xhr request due to same origin policy over own server which sets the needed headers correctly
-            var body = "grant_type=client_credentials_AND_accessToken="+enc_secret;
+            var body = "grant_type=client_credentials&accessToken="+enc_secret;
             xmlhttp.open("GET", "https://context-discount.appspot.com/?url=https://api.twitter.com/oauth2/token&post="+body, false);
             xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded;charset=UTF-8");
             xmlhttp.send();
