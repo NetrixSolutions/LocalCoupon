@@ -7,11 +7,16 @@
     max-width: 60rem;
     min-width: 20rem;
     margin: 2.5rem auto;
+    padding: 1rem 1rem 0 1rem;
 }
 
 .top-container {
     width: 100%;
-    height: 6rem;
+    height: 6.5rem;
+    border-style: none none solid none;
+    border-width: 1px;
+    border-color: #ccc;
+    margin-bottom: 0.5rem;
 }
 
 .shop-logo-container {
@@ -45,31 +50,31 @@
 
 .discount {
     display: block;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     text-align: center;
-    font-weight: bolder;
+    font-weight: 400;
 }
 
 .only-attr {
     line-height: 4.75rem;
-    font-size: 2.5rem;
-    font-weight: lighter;
+    font-size: 2.25rem;
+    font-weight: 200;
 }
 
 .bottom-container {
     float: right;
-    padding: 0 2rem;
+    padding: 0 1rem;
 }
 
 .badge {
     float: right;
     width: 2.5rem;
-    margin-right: -3rem;
+    margin-right: -3.25rem;
     height: 2rem;
     z-index: 9000;
     padding-left: 0.75rem;
     background-color: rgba(255,255,255,0.5);
-    padding-top: 0.5rem;
+    margin-top: -0.5rem;
 }
 
 .badge-icon {
@@ -79,7 +84,7 @@
 .title {
     margin: 1rem 0 0 0;
     color: #333;
-    font-size: 2.5rem;
+    font-size: 2.25rem;
     line-height: 2.5rem;
     font-weight: lighter;
 }
@@ -121,22 +126,26 @@
 }
 
 .club {
-    background-color: #90A4AE;
-    color: white;
+    /*background-color: #90A4AE;*/
+    /*color: white;*/
+    background-color: white;
+    color: #333;
 }
 
 .fitness {
-    background-color: #A5D6A7;
+    background-color: white;
     color: #333;
 }
 
 .groceries {
-    background-color: #FFF59D;
+    /*background-color: #FFF59D;*/
+    background-color: white;
     color: #333;
 }
 
 .education {
-    background-color: #B3E5FC;
+    /*background-color: #B3E5FC;*/
+    background-color: white;
     color: #333;
 }
 
@@ -175,7 +184,7 @@
 
 .facebook {
     color: #3b5998;
-    background-color: rgba(59, 85, 152, 0.15);
+    background-color: rgba(66, 106, 210, 0.15);
 }
 
 .lifelog {

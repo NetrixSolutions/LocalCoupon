@@ -215,7 +215,7 @@
             <label for="filter7" class="labelFilter right"></label>
         </div>
 
-        <div class="filterBox" style="margin-bottom: 50px;">
+        <div class="filterBox" style="margin-bottom: 90px;">
             <a href="https://platform.lifelog.sonymobile.com/oauth/2/authorize?client_id=H2OGTWxpdAuKCSD8K964zCAzshY9OoFk&scope=lifelog.profile.read+lifelog.activities.read+lifelog.locations.read">
                 <div id="lifeLogButton">
                     <img id="lifelogLogo" src="img/lifelog.png"/>
@@ -268,12 +268,13 @@
                 {{::c.description}}
             </div>
             <div class="social-discount waves-effect" ng-class="s.type" ng-repeat="s in c.social_discount">
-                <div class="challenge-bar" ng-if="s.type == Lifelog">
+                <div class="challenge-bar" ng-if="s.type == 'lifelog'">
                     <div class="challenge-fill" ng-style="{width: {{::s.progress}} + '%'}"></div>
                 </div>
                 <img class="social-icon" ng-if="s.type == 'twitter'" src="img/twitter.png"/>
                 <img class="social-icon" ng-if="s.type == 'facebook'" src="img/facebook.png"/>
                 <img class="social-icon" ng-if="s.type == 'xing'" src="img/xing.png"/>
+                <img class="challenge-icon" ng-if="s.type == 'lifelog'" src="img/running-icon.png" />
                 <span class="social-text">{{::s.discount_text}}</span>
             </div>
             <div class="actions">

@@ -5,10 +5,28 @@
     z-index: 9999;
 }
 
+.side-nav {
+    position: fixed;
+    width: 240px;
+    left: -105%;
+    top: 0;
+    margin: 0;
+    height: 100%;
+    height: calc(100% + 60px);
+    height: -moz-calc(100%);
+    padding-bottom: 60px;
+    background-color: #FFF;
+    z-index: 999;
+    overflow-y: auto;
+    will-change: left;
+    padding: 0 1rem;
+}
+
 #profile {
     height: 120px;
     display: block;
     color: black;
+    margin: 0 -1rem;
 }
 
 #profilePic {
@@ -46,7 +64,7 @@
 }
 
 #profileSpans{
-    background-color: rgba(255,255,255,0.4);
+    background-color: rgba(255,255,255,0.9);
     width: 235px;
     margin-left: 50px;
     padding-left: 45px;
@@ -123,8 +141,7 @@ input[type=checkbox]:checked:not(:disabled) ~ .lever:active:after {
 
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     padding: 10px;
-    background-color: rgba(143, 211, 32,0.25);
-    text-align:center;
+    background-color: rgba(244, 255, 129, 0.5);
 }
 
 #lifeLogButton:hover {
@@ -132,9 +149,9 @@ input[type=checkbox]:checked:not(:disabled) ~ .lever:active:after {
 }
 
 #lifelogLogo{
-    margin-top: 5px;
-    margin-left: 5px;
-    height: 40px;
+    margin-top: 2px;
+    margin-left: 10px;
+    height: 45px;
 }
 
 #lifeLogSpan{
@@ -150,7 +167,20 @@ input[type=checkbox]:checked:not(:disabled) ~ .lever:active:after {
 }
 #lifeLogSpanContainer{
     display: inline-block;
-    height: 50px;
     width: 75px;
-    margin-top:5px;
+    margin-left: 10px;
+    position: absolute;
+    margin-top: 5px;
+}
+
+body {
+    background-color: #ECECEC
+}
+
+nav .button-collapse i {
+    font-size: 2rem;
+}
+
+nav .brand-logo {
+    font-size: 1.66rem;
 }
