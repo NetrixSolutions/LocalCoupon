@@ -29,8 +29,12 @@ class APIWrapper(webapp2.RequestHandler):
         if IsNotNull(url):
             if IsNotNull(postbody):
                 postbody = postbody.replace("_AND_", "&")
-                result = urlfetch.fetch(url, payload=postbody, method=urlfetch.POST,
-                                        headers={"Authorization" : "Basic "+accessToken, "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"})
+                if accessToken != "":
+                    headersC={"Authorization" : "Basic "+accessToken, "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"}
+                else:
+                    headersC={}
+
+                result = urlfetch.fetch(url, payload=postbody, method=urlfetch.POST, headers = headersC)
             elif IsNotNull(deletebody):
                 result = urlfetch.fetch(url, payload=deletebody, method=urlfetch.DELETE,
                                         headers={"Authorization": basicAuth, "Content-Type": "application/json"})
