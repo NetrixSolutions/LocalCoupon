@@ -154,10 +154,10 @@
             console.log("NUMBER: "+jsonResponse["statuses"].length);
             console.log("FOUND TWEET: "+jsonResponse["statuses"][0]["text"]);
 
-            for(i = 0; i < jsonResponse["statuses"].length; i++){
+            for(var i = 0; i < jsonResponse["statuses"].length; i++){
                 console.log("FOUND TWEET: "+jsonResponse["statuses"][i]["text"]);
+                angular.element(document.body).scope().addCard(jsonResponse["statuses"][i]);
             }
-
         }
 
 

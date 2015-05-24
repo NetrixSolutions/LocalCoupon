@@ -176,7 +176,44 @@ angular.module('contextDiscount', ['ngMaterial', 'ngTextTruncate', 'ngSanitize']
                 ,
                 'bookmarked': 'false'
             }
-        ]
+        ];
+
+        $scope.addCard = function(tweet){
+            var stripped = tweet["text"].split(" ");
+            var title = stripped[0] + " " + stripped[1] + "...";
+            var desc = "...";
+            for(var j = 2; j < stripped.length; j++){
+                desc = desc + " " + stripped[j];
+            }
+
+            var entry =     {
+                'type': 'club',
+                'logo_url': tweet["user"]["profile_image_url"],
+                'discount_text_top': '',
+                'discount_text_bottom': '',
+                'discount_text': '2,50 &#8364;',
+                'title': title,
+                'subtitle': '600m away',
+                'description': desc,
+                'social_discount': [
+                    {
+                        'type': 'twitter',
+                        'discount_text': '1 free for retweeting',
+                        'progress': ''
+                    }
+                ],
+                'badge_type': 'twitter',
+                'position': {
+                    'lat': 0,
+                    'lng': 0,
+                    'maps_url': ''
+                },
+                'bookmarked': 'false'
+            }
+            console.log(entry);
+            $scope.cards.push(entry);
+            $scope.$apply();
+        }
 
     });
 
