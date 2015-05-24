@@ -232,3 +232,45 @@
         margin: 0 1rem;
     }
 }
+
+.share-sheet {
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.share-overlay {
+    background-color: rgba(0,0,0,0.5);
+    height: 100%;
+    z-index: 10000;
+    position: relative;
+}
+
+.share-actions {
+    background-color: white;
+    padding: 1rem;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 10001;
+}
+
+.share-action {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+}
+
+.share-img {
+    height: 1.5rem;
+}
+.share-text {
+    position: absolute;
+    left: 4.25rem;
+    font-size: 1.5rem;
+    font-weight: lighter;
+    margin-top: -5px;
+}
