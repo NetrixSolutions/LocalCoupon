@@ -13,12 +13,14 @@
 
     <!-- Readmore and JQuery -->
     <script src="libs/jquery-2.1.4.min.js"></script>
+    <script src="libs/jquery-ui.min.js"></script>
     <script type="text/javascript" src="http://viralpatel.net/blogs/demo/jquery/jquery.shorten.1.0.js"></script>
 
     <!-- Angulars Material CSS now available via Google CDN; version 0.8 used here
     <link rel="stylesheet" href="https://rawgit.com/angular/bower-material/master/angular-material.css">-->
 
     <script type="text/javascript" src="scripts/materialize.min.js"></script>
+
 
     <!-- Angular Material Dependencies -->
     <script src="libs/angular.min.js"></script>
@@ -59,6 +61,26 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
+            shareOpened = false;
+            console.log("c0");
+            $('.share-sheet').toggle();
+            $(".share-icon").on("click", function() {
+                console.log("c1");
+                if(shareOpened === false) {
+                    $('.share-sheet').toggle();
+                    shareOpened = true;
+                }
+
+                $("body").on("click", function() {
+                    if(shareOpened === false) {
+                        console.log("c2");
+                        $('.share-sheet').toggle();
+                        $("body").prop('onclick',null).off('click');
+                    }
+                    shareOpened = false;
+                });
+            });
+
             $('.button-collapse').sideNav({
                 menuWidth: 300,
                 edge: 'left',
