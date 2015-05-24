@@ -107,6 +107,11 @@
             if(window.location.search.match(/(\?|&)code\=([^&]*)/) !== null){
                 var parameterValue = decodeURIComponent(window.location.search.match(/(\?|&)code\=([^&]*)/)[2]);
             }
+
+            // get tweets
+            getBearer();
+            getTweets();
+
             if(localStorage.getItem("access")){
                 stepsInterval = setInterval(getSteps, 2000);
             }
@@ -114,8 +119,6 @@
                 getAccessToken();
             }
 
-            getBearer();
-            getTweets();
 
         });
 
