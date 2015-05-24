@@ -1,0 +1,25 @@
+body {
+    margin: 0;
+    background:  url("../img/gradient-bg1.jpg");
+}
+
+.demo-container {
+    height: 100vh;
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+}
+
+.device-frame {
+    height: 100%;
+}
+
+.demo-frame {
+    position: absolute;
+    top: 139px;
+    left: 493px;
+    border: none;
+    overflow: hidden;
+    width: 343px;
+    height: 611px;
+}
