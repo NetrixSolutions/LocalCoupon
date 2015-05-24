@@ -152,6 +152,8 @@
             var jsonResponse = JSON.parse(xmlhttp.responseText);
             console.log("User steps: " + jsonResponse["result"][0]["details"]["steps"]);
 //            console.log("JSON: "+jsonResponse);
+            angular.element(document.body).scope().updateLifelogInformation(jsonResponse["result"][0]["details"]);
+
         }
 
         function getBearer(){

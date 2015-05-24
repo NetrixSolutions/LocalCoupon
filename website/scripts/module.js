@@ -215,5 +215,13 @@ angular.module('contextDiscount', ['ngMaterial', 'ngTextTruncate', 'ngSanitize']
             $scope.$apply();
         }
 
+        $scope.updateLifelogInformation = function(lifeLogDetails){
+            for(var c in $scope.cards){
+                if($scope.cards.type === 'fitness'){
+                    
+                }
+            }
+        }
+
     });
 
