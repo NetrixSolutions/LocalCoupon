@@ -126,6 +126,7 @@ angular.module('contextDiscount', ['ngMaterial', 'ngTextTruncate', 'ngSanitize']
             },
 
             {
+                'id': 'fitness_first_id',
                 'type': 'fitness',
                 'logo_url': './img/Fitness_First_Logo.png',
                 'discount_text_top': '',
@@ -154,6 +155,7 @@ angular.module('contextDiscount', ['ngMaterial', 'ngTextTruncate', 'ngSanitize']
             },
 
             {
+                'id': 'dean_and_david_id',
                 'type': 'fitness',
                 'logo_url': './img/Dean_and_David.png',
                 'discount_text_top': '2,50',
@@ -161,16 +163,16 @@ angular.module('contextDiscount', ['ngMaterial', 'ngTextTruncate', 'ngSanitize']
                 'discount_text': '',
                 'title': 'Caesar Fitness Salad',
                 subtitle: '500m away, 3 days valid',
-                'description': 'Get a reward for your activity and grab a Caesar Fitness Salad after making 2.000 steps on one day!',
+                'description': 'Get a reward for your activity and grab a Caesar Fitness Salad after making 1.000 steps on one day!',
                 'social_discount': [
                     {
                         'type': 'lifelog',
-                        'discount_text': 'Additional 5% for 2.000',
+                        'discount_text': 'Additional 5% for 1.000',
                         'progress': '69'
                     }
                 ],
                 'fitness_type': 'steps',
-                'fitness_amount': 2000,
+                'fitness_amount': 1000,
                 'badge_type': '',
                 'position': {
                     'lat': 0,
@@ -223,11 +225,14 @@ angular.module('contextDiscount', ['ngMaterial', 'ngTextTruncate', 'ngSanitize']
             for (var c in $scope.cards) {
                 if ($scope.cards[c].type === 'fitness') {
                     if ($scope.cards[c].fitness_type === 'steps') {
-                        $scope.cards[c].social_discount.progress = (lifeLogDetails["steps"] / $scope.cards[c].fitness_amount);
+                        $scope.cards[c].social_discount.progress = (lifeLogDetails["steps"]*100 / $scope.cards[c].fitness_amount)*100;
                     }
                     else if($scope.cards[c].fitness_type === 'kcal'){
-                        $scope.cards[c].social_discount.progress = (lifeLogDetails["aee"]*100 / $scope.cards[c].fitness_amount);
+                        $scope.cards[c].social_discount.progress = (lifeLogDetails["aee"]*100 / $scope.cards[c].fitness_amount)*100;
                     }
+                    $('#'+$scope.cards[c].id).width($scope.cards[c].social_discount.progress + "%");
+                    console.log($scope.cards[c].social_discount.progress);
+                    $scope.$apply();
                 }
             }
         }

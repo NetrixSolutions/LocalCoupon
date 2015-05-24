@@ -217,7 +217,7 @@
 
             <div id="profileSpans">
                 <span id="profileName">Patrick Herholz</span>
-                <span id="profileTwitter">@herholz</span>
+                <span id="profileTwitter">@herholzp</span>
             </div>
 
         </div>
@@ -339,7 +339,7 @@
             </div>
             <div class="social-discount waves-effect" ng-class="s.type" ng-repeat="s in c.social_discount">
                 <div class="challenge-bar" ng-if="s.type == 'lifelog'">
-                    <div class="challenge-fill" ng-style="{width: {{::s.progress}} + '%'}"></div>
+                    <div class="challenge-fill" id="{{::c.id}}" ng-style="{width: {{s.progress}} + '%'}"></div>
                 </div>
                 <a ng-if="s.type == 'twitter'"
                    href="https://twitter.com/intent/tweet?text=Check%20out%20this%20%40ContextDiscount:%20{{::c.title}}">
