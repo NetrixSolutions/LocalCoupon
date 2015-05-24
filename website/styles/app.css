@@ -154,3 +154,7 @@ input[type=checkbox]:checked:not(:disabled) ~ .lever:active:after {
     width: 75px;
     margin-top:5px;
 }
+
+body {
+    background-color: #ECECEC
+}
