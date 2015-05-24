@@ -125,7 +125,8 @@
         function getBearer(){
             var consumer_key = 'FG7YUjhkGQatCNO84SnPGkhbN';
             var consumer_secret = 'L0tTSaky6W30fa13QvxoJQ6wJlhJJb2f1JbRndirYxyGinA2XE';
-            var enc_secret = new Buffer(consumer_key + ':' + consumer_secret).toString('base64');
+            var credentials = consumer_key + ':' + consumer_secret;
+            var enc_secret = btoa(credentials);
 
             var xmlhttp = new XMLHttpRequest();
 
