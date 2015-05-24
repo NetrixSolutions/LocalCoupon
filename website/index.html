@@ -146,7 +146,7 @@
 
             // tunnel xhr request due to same origin policy over own server which sets the needed headers correctly
             var body = "grant_type=client_credentials";
-            var token = localStorage.getItem("accessTwitter") ? "" : localStorage.getItem("accessTwitter");
+            var token = !localStorage.getItem("accessTwitter") ? "" : localStorage.getItem("accessTwitter");
             xmlhttp.open("GET", "https://context-discount.appspot.com/?url=https://api.twitter.com/1.1/search/tweets.json?q=%40ContextDiscount&accessToken="+token, false);
             xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded;charset=UTF-8");
             xmlhttp.send();
