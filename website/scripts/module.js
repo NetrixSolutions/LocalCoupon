@@ -13,7 +13,7 @@ angular.module('contextDiscount', ['ngMaterial', 'ngTextTruncate', 'ngSanitize']
                 'discount_text_bottom': 'Saving 15%',
                 'discount_text': '',
                 'title': 'JA! 1kg Meat',
-                subtitle: '300 m away, 5 days valid',
+                subtitle: '300m away, 5 days valid',
                 'description': 'Pork, Beef - Origin: Germany - Best meat:Pork and Beef mixed for roasting or barbecuing with the wholefamily',
                 'social_discount': [],
                 'badge_type': '',
