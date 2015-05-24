@@ -141,7 +141,7 @@
             var xmlhttp = new XMLHttpRequest();
 
             var accessToken = localStorage.getItem("access");
-            xmlhttp.open("GET","https://context-discount.appspot.com/?url=https://platform.lifelog.sonymobile.com/v1/users/me/activities_?_start_time=2015-05-03T09:00:00.000Z&accessToken="+accessToken,false);
+            xmlhttp.open("GET","https://context-discount.appspot.com/?url=https://platform.lifelog.sonymobile.com/v1/users/me/activities_QUEST_start_time=2015-05-03T09:00:00.000Z&accessToken="+accessToken,false);
             xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
             xmlhttp.send();
             console.log(xmlhttp.responseText);
