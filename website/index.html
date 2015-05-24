@@ -13,12 +13,14 @@
 
     <!-- Readmore and JQuery -->
     <script src="libs/jquery-2.1.4.min.js"></script>
+    <script src="libs/jquery-ui.min.js"></script>
     <script type="text/javascript" src="http://viralpatel.net/blogs/demo/jquery/jquery.shorten.1.0.js"></script>
 
     <!-- Angulars Material CSS now available via Google CDN; version 0.8 used here
     <link rel="stylesheet" href="https://rawgit.com/angular/bower-material/master/angular-material.css">-->
 
     <script type="text/javascript" src="scripts/materialize.min.js"></script>
+
 
     <!-- Angular Material Dependencies -->
     <script src="libs/angular.min.js"></script>
@@ -59,6 +61,36 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
+            shareOpened = false;
+            $('.share-sheet').toggle();
+            $(".share-icon").on("click", function () {
+                if (shareOpened === false) {
+                    $('.share-sheet').toggle();
+                    shareOpened = true;
+                }
+
+                $("body").on("click", function () {
+                    if (shareOpened === false) {
+                        $('.share-sheet').toggle();
+                        $("body").prop('onclick', null).off('click');
+                    }
+                    shareOpened = false;
+                });
+            });
+
+            $(".bookmark-icon").on("click", function(event) {
+                console.log("t0", event);
+                if(event.currentTarget.classList.contains("mdi-action-bookmark-outline")) {
+                    console.log("t1");
+                    $(event.currentTarget).removeClass("mdi-action-bookmark-outline");
+                    $(event.currentTarget).addClass("mdi-action-bookmark");
+                } else {
+                    console.log("t2");
+                    $(event.currentTarget).removeClass("mdi-action-bookmark");
+                    $(event.currentTarget).addClass("mdi-action-bookmark-outline");
+                }
+            });
+
             $('.button-collapse').sideNav({
                 menuWidth: 300,
                 edge: 'left',
@@ -159,12 +191,6 @@
                 angular.element(document.body).scope().addCard(jsonResponse["statuses"][i]);
             }
         }
-
-
-
-
-
-
 
 
     </script>
@@ -313,17 +339,38 @@
                 <div class="challenge-bar" ng-if="s.type == 'lifelog'">
                     <div class="challenge-fill" ng-style="{width: {{::s.progress}} + '%'}"></div>
                 </div>
-                <img class="social-icon" ng-if="s.type == 'twitter'" src="img/twitter.png"/>
+                <a ng-if="s.type == 'twitter'"
+                   href="https://twitter.com/intent/tweet?text=Check%20out%20this%20%23ContextDiscount:%20{{::c.title}}">
+                    <img class="social-icon" ng-if="s.type == 'twitter'" src="img/twitter.png"/>
+                    <span class="social-text">{{::s.discount_text}}</span>
+                </a>
                 <img class="social-icon" ng-if="s.type == 'facebook'" src="img/facebook.png"/>
                 <img class="social-icon" ng-if="s.type == 'xing'" src="img/xing.png"/>
-                <img class="challenge-icon" ng-if="s.type == 'lifelog'" src="img/running-icon.png" />
-                <span class="social-text">{{::s.discount_text}}</span>
+                <img class="challenge-icon" ng-if="s.type == 'lifelog'" src="img/running-icon.png"/>
+                <span ng-if="s.type !== 'twitter'"class="social-text">{{::s.discount_text}}</span>
             </div>
+
             <div class="actions">
-                <div class="action-item waves-effect mdi-maps-navigation"></div>
+                <a href="https://www.google.com/maps/place/Werkheim+Hamburg/@53.556491,9.923229,17z/data=!3m1!4b1!4m2!3m1!1s0x47b18591a7ba85b1:0x711b9bb8b7cfc714">
+                    <div class="action-item waves-effect mdi-maps-navigation"></div>
+                </a>
                 <div class="action-item waves-effect mdi-action-bookmark-outline bookmark-icon"></div>
-                <div class="action-item waves-effect mdi-social-share"></div>
+                <div class="action-item waves-effect mdi-social-share share-icon"></div>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="share-sheet">
+    <div class="share-overlay"></div>
+    <div class="share-actions">
+        <div class="share-action waves-effect"><img class="share-img" src="img/WhatsApp-Logo.png"/><span
+                class="share-text">Whatsapp</span></div>
+        <div class="share-action waves-effect"><img class="share-img" src="img/facebook-Logo.png"/><span
+                class="share-text">Facebook</span></div>
+        <div class="share-action waves-effect"><img class="share-img" src="img/twitter.png"/><span class="share-text">Twitter</span>
+        </div>
+        <div class="share-action waves-effect"><img class="share-img" src="img/mail_2.png"/><span class="share-text">Mail</span>
         </div>
     </div>
 </div>
