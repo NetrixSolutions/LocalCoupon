@@ -29,6 +29,7 @@ class APIWrapper(webapp2.RequestHandler):
         if IsNotNull(url):
             if IsNotNull(postbody):
                 postbody = postbody.replace("_AND_", "&")
+                postbody = postbody.replace("_?_", "?")
                 if accessToken != "":
                     headersC={"Authorization" : "Basic "+accessToken, "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"}
                 else:
