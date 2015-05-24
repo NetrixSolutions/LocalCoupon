@@ -17,10 +17,10 @@ body {
 
 .demo-frame {
     position: absolute;
-    top: 92px;
-    left: 459px;
+    top: 96px;
+    left: 450px;
     border: none;
     overflow: hidden;
-    width: 411px;
-    height: 723px;
+    width: 425px;
+    height: 759px;
 }
