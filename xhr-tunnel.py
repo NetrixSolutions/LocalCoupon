@@ -29,7 +29,6 @@ class APIWrapper(webapp2.RequestHandler):
         if IsNotNull(url):
             if IsNotNull(postbody):
                 postbody = postbody.replace("_AND_", "&")
-                postbody = postbody.replace("_QUEST_", "?")
                 if accessToken != "":
                     headersC={"Authorization" : "Basic "+accessToken, "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"}
                 else:
@@ -40,6 +39,7 @@ class APIWrapper(webapp2.RequestHandler):
                 result = urlfetch.fetch(url, payload=deletebody, method=urlfetch.DELETE,
                                         headers={"Authorization": basicAuth, "Content-Type": "application/json"})
             else:
+                url = url.replace("_QUEST_", "?")
                 result = urlfetch.fetch(url, headers={"Authorization": basicAuth + accessToken})
             if result.status_code == 200:
                 self.response.headers.add_header("Access-Control-Allow-Origin", "*")
