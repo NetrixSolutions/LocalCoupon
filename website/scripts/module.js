@@ -225,10 +225,10 @@ angular.module('contextDiscount', ['ngMaterial', 'ngTextTruncate', 'ngSanitize']
             for (var c in $scope.cards) {
                 if ($scope.cards[c].type === 'fitness') {
                     if ($scope.cards[c].fitness_type === 'steps') {
-                        $scope.cards[c].social_discount.progress = (lifeLogDetails["steps"]*100 / $scope.cards[c].fitness_amount)*100;
+                        $scope.cards[c].social_discount.progress = (lifeLogDetails["steps"]*75 / $scope.cards[c].fitness_amount)*100;
                     }
                     else if($scope.cards[c].fitness_type === 'kcal'){
-                        $scope.cards[c].social_discount.progress = (lifeLogDetails["aee"]*100 / $scope.cards[c].fitness_amount)*100;
+                        $scope.cards[c].social_discount.progress = (lifeLogDetails["aee"]*120 / $scope.cards[c].fitness_amount)*100;
                     }
                     $('#'+$scope.cards[c].id).width($scope.cards[c].social_discount.progress + "%");
                     console.log($scope.cards[c].social_discount.progress);
