@@ -64,18 +64,18 @@
             shareOpened = false;
             console.log("c0");
             $('.share-sheet').toggle();
-            $(".share-icon").on("click", function() {
+            $(".share-icon").on("click", function () {
                 console.log("c1");
-                if(shareOpened === false) {
+                if (shareOpened === false) {
                     $('.share-sheet').toggle();
                     shareOpened = true;
                 }
 
-                $("body").on("click", function() {
-                    if(shareOpened === false) {
+                $("body").on("click", function () {
+                    if (shareOpened === false) {
                         console.log("c2");
                         $('.share-sheet').toggle();
-                        $("body").prop('onclick',null).off('click');
+                        $("body").prop('onclick', null).off('click');
                     }
                     shareOpened = false;
                 });
@@ -94,13 +94,13 @@
             $(".switchFilter").change(function () {
                 // CALL REST
             });
-            if(window.location.search.match(/(\?|&)code\=([^&]*)/) === null){
+            if (window.location.search.match(/(\?|&)code\=([^&]*)/) === null) {
                 return;
             }
             var parameterValue = decodeURIComponent(window.location.search.match(/(\?|&)code\=([^&]*)/)[2]);
-            if(parameterValue){
-                if(localStorage.getItem("access")){
-                   // getSteps();
+            if (parameterValue) {
+                if (localStorage.getItem("access")) {
+                    // getSteps();
                 }
                 else {
                     getAccessToken();
@@ -112,7 +112,7 @@
             var xmlhttp = new XMLHTTRequest();
             xmlhttp.open("POST", "https://platform.lifelog.sonymobile.com/oauth/2/token", false);
             xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            if(window.location.search.match(/(\?|&)code\=([^&]*)/) === null){
+            if (window.location.search.match(/(\?|&)code\=([^&]*)/) === null) {
                 return;
             }
             var parameterValue = decodeURIComponent(window.location.search.match(/(\?|&)code\=([^&]*)/)[2]);
@@ -125,29 +125,23 @@
 
         }
 
-        function getSteps(){
+        function getSteps() {
             var xmlhttp = new XMLHTTRequest();
-            xmlhttp.open("POST","https://platform.lifelog.sonymobile.com/oauth/2/token",false);
-            xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-            if(window.location.search.match(/(\?|&)code\=([^&]*)/) === null){
+            xmlhttp.open("POST", "https://platform.lifelog.sonymobile.com/oauth/2/token", false);
+            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            if (window.location.search.match(/(\?|&)code\=([^&]*)/) === null) {
                 return;
             }
             var parameterValue = decodeURIComponent(window.location.search.match(/(\?|&)code\=([^&]*)/)[2]);
-            var body = "client_id=H2OGTWxpdAuKCSD8K964zCAzshY9OoFk&client_secret=PxtA6lL8cEf8Kbuw&grant_type=authorization_code&code="+parameterValue;
+            var body = "client_id=H2OGTWxpdAuKCSD8K964zCAzshY9OoFk&client_secret=PxtA6lL8cEf8Kbuw&grant_type=authorization_code&code=" + parameterValue;
             xmlhttp.send(body);
             var jsonResponse = JSON.parse(xmlhttp.responseText);
-            console.log("JSON: "+jsonResponse);
+            console.log("JSON: " + jsonResponse);
 
-            localStorage.setItem("access", jsonResponse[access-token]);
-            console.log("ACCESS-TOKEN:"+localStorage.getItem("access"));
+            localStorage.setItem("access", jsonResponse[access - token]);
+            console.log("ACCESS-TOKEN:" + localStorage.getItem("access"));
 
         }
-
-
-
-
-
-
 
 
     </script>
@@ -296,14 +290,21 @@
                 <div class="challenge-bar" ng-if="s.type == 'lifelog'">
                     <div class="challenge-fill" ng-style="{width: {{::s.progress}} + '%'}"></div>
                 </div>
-                <img class="social-icon" ng-if="s.type == 'twitter'" src="img/twitter.png"/>
+                <a ng-if="s.type == 'twitter'"
+                   href="https://twitter.com/intent/tweet?text=Check%20out%20this%20%23ContextDiscount:%20{{::c.title}}">
+                    <img class="social-icon" ng-if="s.type == 'twitter'" src="img/twitter.png"/>
+                    <span class="social-text">{{::s.discount_text}}</span>
+                </a>
                 <img class="social-icon" ng-if="s.type == 'facebook'" src="img/facebook.png"/>
                 <img class="social-icon" ng-if="s.type == 'xing'" src="img/xing.png"/>
-                <img class="challenge-icon" ng-if="s.type == 'lifelog'" src="img/running-icon.png" />
-                <span class="social-text">{{::s.discount_text}}</span>
+                <img class="challenge-icon" ng-if="s.type == 'lifelog'" src="img/running-icon.png"/>
+                <span ng-if="s.type !== 'twitter'"class="social-text">{{::s.discount_text}}</span>
             </div>
+
             <div class="actions">
-                <div class="action-item waves-effect mdi-maps-navigation"></div>
+                <a href="https://www.google.com/maps/place/Werkheim+Hamburg/@53.556491,9.923229,17z/data=!3m1!4b1!4m2!3m1!1s0x47b18591a7ba85b1:0x711b9bb8b7cfc714">
+                    <div class="action-item waves-effect mdi-maps-navigation"></div>
+                </a>
                 <div class="action-item waves-effect mdi-action-bookmark-outline bookmark-icon"></div>
                 <div class="action-item waves-effect mdi-social-share share-icon"></div>
             </div>
@@ -314,10 +315,14 @@
 <div class="share-sheet">
     <div class="share-overlay"></div>
     <div class="share-actions">
-        <div class="share-action waves-effect"><img class="share-img" src="img/WhatsApp-Logo.png"/><span class="share-text">Whatsapp</span></div>
-        <div class="share-action waves-effect"><img class="share-img" src="img/facebook-Logo.png"/><span class="share-text">Facebook</span></div>
-        <div class="share-action waves-effect"><img class="share-img" src="img/twitter.png" /><span class="share-text">Twitter</span></div>
-        <div class="share-action waves-effect"><img class="share-img" src="img/mail_2.png"/><span class="share-text">Mail</span></div>
+        <div class="share-action waves-effect"><img class="share-img" src="img/WhatsApp-Logo.png"/><span
+                class="share-text">Whatsapp</span></div>
+        <div class="share-action waves-effect"><img class="share-img" src="img/facebook-Logo.png"/><span
+                class="share-text">Facebook</span></div>
+        <div class="share-action waves-effect"><img class="share-img" src="img/twitter.png"/><span class="share-text">Twitter</span>
+        </div>
+        <div class="share-action waves-effect"><img class="share-img" src="img/mail_2.png"/><span class="share-text">Mail</span>
+        </div>
     </div>
 </div>
 
