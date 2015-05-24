@@ -7,7 +7,7 @@ threadsafe: true
 handlers:
 
 - url: /
-  script: helloworld.application
+  script: xhr-tunnel.application
 
 - url: /website/(.*\.css)
   mime_type: text/css
