@@ -6,6 +6,9 @@ threadsafe: true
 
 handlers:
 
+- url: /
+  script: helloworld.application
+
 - url: /website/(.*\.css)
   mime_type: text/css
   static_files: website/\1

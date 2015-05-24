@@ -72,53 +72,50 @@
             $(".switchFilter").change(function () {
                 // CALL REST
             });
-            if(window.location.search.match(/(\?|&)code\=([^&]*)/) === null){
-                return;
+            if(window.location.search.match(/(\?|&)code\=([^&]*)/) !== null){
+                var parameterValue = decodeURIComponent(window.location.search.match(/(\?|&)code\=([^&]*)/)[2]);
             }
-            var parameterValue = decodeURIComponent(window.location.search.match(/(\?|&)code\=([^&]*)/)[2]);
-            if(parameterValue){
-                if(localStorage.getItem("access")){
-                   // getSteps();
-                }
-                else {
-                    getAccessToken();
-                }
+            if(localStorage.getItem("access")){
+                stepsInterval = setInterval(getSteps, 2000);
             }
+            else if(parameterValue) {
+                getAccessToken();
+            }
+
         });
 
         function getAccessToken() {
             var xmlhttp = new XMLHttpRequest();
-            xmlhttp.open("POST", "https://platform.lifelog.sonymobile.com/oauth/2/token", false);
-            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             if(window.location.search.match(/(\?|&)code\=([^&]*)/) === null){
                 return;
             }
             var parameterValue = decodeURIComponent(window.location.search.match(/(\?|&)code\=([^&]*)/)[2]);
-            var body = "client_id=H2OGTWxpdAuKCSD8K964zCAzshY9OoFk&client_secret=PxtA6lL8cEf8Kbuw&grant_type=authorization_code&code=" + parameterValue;
-            xmlhttp.send(body);
+            // tunnel xhr request due to same origin policy over own server which sets the needed headers correctly
+            var body = "client_id=H2OGTWxpdAuKCSD8K964zCAzshY9OoFk_AND_client_secret=PxtA6lL8cEf8Kbuw_AND_grant_type=authorization_code_AND_code=" + parameterValue;
+            xmlhttp.open("GET", "https://context-discount.appspot.com/?url=https://platform.lifelog.sonymobile.com/oauth/2/token&post="+body, false);
+            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xmlhttp.send();
             var jsonResponse = JSON.parse(xmlhttp.responseText);
             console.log(jsonResponse);
 
-            localStorage.setItem("access", jsonResponse[access - token]);
+            localStorage.setItem("access", jsonResponse["access_token"]);
 
         }
 
         function getSteps(){
             var xmlhttp = new XMLHttpRequest();
-            xmlhttp.open("POST","https://platform.lifelog.sonymobile.com/oauth/2/token",false);
+            var accessToken = localStorage.getItem("access");
+            xmlhttp.open("GET","https://context-discount.appspot.com/?url=https://platform.lifelog.sonymobile.com/v1/users/me/activities&accessToken="+accessToken,false);
             xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-            if(window.location.search.match(/(\?|&)code\=([^&]*)/) === null){
-                return;
+            xmlhttp.send();
+            console.log(xmlhttp.responseText);
+            if(xmlhttp.responseText.indexOf("401{") > -1){
+                clearInterval(stepsInterval);
+                localStorage.removeItem("access");
             }
-            var parameterValue = decodeURIComponent(window.location.search.match(/(\?|&)code\=([^&]*)/)[2]);
-            var body = "client_id=H2OGTWxpdAuKCSD8K964zCAzshY9OoFk&client_secret=PxtA6lL8cEf8Kbuw&grant_type=authorization_code&code="+parameterValue;
-            xmlhttp.send(body);
             var jsonResponse = JSON.parse(xmlhttp.responseText);
-            console.log("JSON: "+jsonResponse);
-
-            localStorage.setItem("access", jsonResponse[access-token]);
-            console.log("ACCESS-TOKEN:"+localStorage.getItem("access"));
-
+//            console.log("JSON: "+jsonResponse);
+            console.log("User steps: " + jsonResponse["result"][0]["details"]["steps"]);
         }
 
 
