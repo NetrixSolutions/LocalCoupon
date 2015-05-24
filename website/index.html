@@ -62,10 +62,8 @@
     <script type="text/javascript">
         $(document).ready(function () {
             shareOpened = false;
-            console.log("c0");
             $('.share-sheet').toggle();
             $(".share-icon").on("click", function () {
-                console.log("c1");
                 if (shareOpened === false) {
                     $('.share-sheet').toggle();
                     shareOpened = true;
@@ -73,12 +71,24 @@
 
                 $("body").on("click", function () {
                     if (shareOpened === false) {
-                        console.log("c2");
                         $('.share-sheet').toggle();
                         $("body").prop('onclick', null).off('click');
                     }
                     shareOpened = false;
                 });
+            });
+
+            $(".bookmark-icon").on("click", function(event) {
+                console.log("t0", event);
+                if(event.currentTarget.classList.contains("mdi-action-bookmark-outline")) {
+                    console.log("t1");
+                    $(event.currentTarget).removeClass("mdi-action-bookmark-outline");
+                    $(event.currentTarget).addClass("mdi-action-bookmark");
+                } else {
+                    console.log("t2");
+                    $(event.currentTarget).removeClass("mdi-action-bookmark");
+                    $(event.currentTarget).addClass("mdi-action-bookmark-outline");
+                }
             });
 
             $('.button-collapse').sideNav({
