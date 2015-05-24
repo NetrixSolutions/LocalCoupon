@@ -151,6 +151,8 @@
             xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded;charset=UTF-8");
             xmlhttp.send();
             var jsonResponse = JSON.parse(xmlhttp.responseText);
+            console.log("NUMBER: "+jsonResponse["statuses"].length);
+            console.log("FOUND TWEET: "+jsonResponse["statuses"][0]["text"]);
 
             for(i = 0; i < jsonResponse["statuses"].length; i++){
                 console.log("FOUND TWEET: "+jsonResponse["statuses"][i]["text"]);
