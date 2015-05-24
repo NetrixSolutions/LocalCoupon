@@ -152,8 +152,8 @@
             xmlhttp.send();
             var jsonResponse = JSON.parse(xmlhttp.responseText);
 
-            for(i = 0; i < jsonResponse.length; i++){
-                console.log("FOUND TWEET: "+jsonResponse[i]["text"]);
+            for(i = 0; i < jsonResponse["statuses"].length; i++){
+                console.log("FOUND TWEET: "+jsonResponse["statuses"][i]["text"]);
             }
 
         }
