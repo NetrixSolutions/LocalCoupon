@@ -106,8 +106,8 @@
         }
 
         function getSteps(){
+            var xmlhttp = new XMLHttpRequest();
 
-            console.log("User steps: " + jsonResponse["result"][ var xmlhttp = new XMLHttpRequest();
             var accessToken = localStorage.getItem("access");
             xmlhttp.open("GET","https://context-discount.appspot.com/?url=https://platform.lifelog.sonymobile.com/v1/users/me/activities&accessToken="+accessToken,false);
             xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
@@ -118,7 +118,8 @@
                 localStorage.removeItem("access");
             }
             var jsonResponse = JSON.parse(xmlhttp.responseText);
-//            console.log("JSON: "+jsonResponse);0]["details"]["steps"]);
+            console.log("User steps: " + jsonResponse["result"][0]["details"]["steps"]);
+//            console.log("JSON: "+jsonResponse);
         }
 
         function getBearer(){
