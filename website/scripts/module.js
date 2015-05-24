@@ -137,10 +137,12 @@ angular.module('contextDiscount', ['ngMaterial', 'ngTextTruncate', 'ngSanitize']
                 'social_discount': [
                     {
                         'type': 'lifelog',
-                        'discount_text': 'Free Shake for 500 kcal',
+                        'discount_text': 'Free Shake for 500 kcal burned',
                         'progress': '27'
                     }
                 ],
+                'fitness_type': 'kcal',
+                'fitness_amount': 500,
                 'badge_type': '',
                 'position': {
                     'lat': 0,
@@ -163,10 +165,12 @@ angular.module('contextDiscount', ['ngMaterial', 'ngTextTruncate', 'ngSanitize']
                 'social_discount': [
                     {
                         'type': 'lifelog',
-                        'discount_text': 'Additional 5% for 2000',
+                        'discount_text': 'Additional 5% for 2.000',
                         'progress': '69'
                     }
                 ],
+                'fitness_type': 'steps',
+                'fitness_amount': 2000,
                 'badge_type': '',
                 'position': {
                     'lat': 0,
@@ -178,15 +182,15 @@ angular.module('contextDiscount', ['ngMaterial', 'ngTextTruncate', 'ngSanitize']
             }
         ];
 
-        $scope.addCard = function(tweet){
+        $scope.addCard = function (tweet) {
             var stripped = tweet["text"].split(" ");
             var title = stripped[0] + " " + stripped[1] + "...";
             var desc = "...";
-            for(var j = 2; j < stripped.length; j++){
+            for (var j = 2; j < stripped.length; j++) {
                 desc = desc + " " + stripped[j];
             }
 
-            var entry =     {
+            var entry = {
                 'type': 'club',
                 'logo_url': tweet["user"]["profile_image_url"],
                 'discount_text_top': '',
@@ -215,10 +219,15 @@ angular.module('contextDiscount', ['ngMaterial', 'ngTextTruncate', 'ngSanitize']
             $scope.$apply();
         }
 
-        $scope.updateLifelogInformation = function(lifeLogDetails){
-            for(var c in $scope.cards){
-                if($scope.cards.type === 'fitness'){
-                    
+        $scope.updateLifelogInformation = function (lifeLogDetails) {
+            for (var c in $scope.cards) {
+                if ($scope.cards[c].type === 'fitness') {
+                    if ($scope.cards[c].fitness_type === 'steps') {
+                        $scope.cards[c].social_discount.progress = (lifeLogDetails["steps"] / $scope.cards[c].fitness_amount);
+                    }
+                    else if($scope.cards[c].fitness_type === 'kcal'){
+                        $scope.cards[c].social_discount.progress = (lifeLogDetails["aee"]*100 / $scope.cards[c].fitness_amount);
+                    }
                 }
             }
         }
